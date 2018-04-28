@@ -72,7 +72,7 @@ namespace Traceless.TExtension.Tools
         /// <param name="image">分享的图片链接。若参数为空或被忽略，则显示默认图片param>
         /// <param name="content">分享的简介，建议30字以内。该参数可被忽略</param>
         /// <returns></returns>
-        public static string SendLink(string url, string title, string image="", string content = "")
+        public static string SendLink(string title, string image = "", string content = "", string url = "http://traceless.site/")
         {
             return $"[CQ:share,url={url},title={title},content={content},image={image}]";
         }

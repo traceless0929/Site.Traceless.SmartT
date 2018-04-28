@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
 using Site.Traceless.SmartT.DAL;
+using Site.Traceless.SmartT.Func;
 
 namespace Site.Traceless.SmartT.CorP
 {
@@ -17,25 +18,30 @@ namespace Site.Traceless.SmartT.CorP
             _mahuaApi = mahuaApi;
         }
 
-        public DALMenu DALMenu = new DALMenu();
-        public override void ProcessRequset(GroupMessageReceivedContext msg)
+        public override void ProcessRequset(GroupMessageReceivedContext msg, AnalysisMsg nowModel)
         {
-            if(msg.Message.Trim()=="菜单")
+            if (Config.ConfigModel.IsFuncOpen("菜单"))
             {
-                _mahuaApi.SendGroupMessage(msg.FromGroup).Text(DALMenu.GetMenuStr()).Face("150").Done();
-                return;
+                if (msg.Message.Trim() == "菜单")
+                {
+                    _mahuaApi.SendGroupMessage(msg.FromGroup).Text(Config.ConfigModel.MenuStr).Done();
+                    return;
+                }
             }
-            successor.ProcessRequset(msg);
+            successor.ProcessRequset(msg, nowModel);
         }
 
-        public override void ProcessRequset(PrivateMessageFromFriendReceivedContext msg)
+        public override void ProcessRequset(PrivateMessageFromFriendReceivedContext msg, AnalysisMsg nowModel)
         {
-            if (msg.Message.Trim() == "菜单")
+            if (Config.ConfigModel.IsFuncOpen("个人菜单"))
             {
-                _mahuaApi.SendPrivateMessage(msg.FromQq).Text(DALMenu.GetMenuStr()).Face("150").Done();
-                return;
+                if (msg.Message.Trim() == "菜单")
+                {
+                    _mahuaApi.SendPrivateMessage(msg.FromQq).Text(Config.ConfigModel.PrivateMenuStr).Done();
+                    return;
+                }
             }
-            successor.ProcessRequset(msg);
+            successor.ProcessRequset(msg, nowModel);
         }
     }
 }

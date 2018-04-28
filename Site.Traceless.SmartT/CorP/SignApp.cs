@@ -8,6 +8,7 @@ using Newbe.Mahua.MahuaEvents;
 using Site.Traceless.SmartT.DAL;
 using Newbe.Mahua.CQP.ApiExtensions;
 using Traceless.TExtension.Tools;
+using Site.Traceless.SmartT.Func;
 
 namespace Site.Traceless.SmartT.CorP
 {
@@ -19,33 +20,36 @@ namespace Site.Traceless.SmartT.CorP
         {
             _mahuaApi = mahuaApi;
         }
-        public override void ProcessRequset(GroupMessageReceivedContext msg)
+        public override void ProcessRequset(GroupMessageReceivedContext msg, AnalysisMsg nowModel)
         {
-            if(msg.Message=="签到")
+            if (Config.ConfigModel.IsFuncOpen("签到"))
             {
-                var signEnt = DALSign.GetSign(msg.FromQq);
-                bool signed = false;
-                string content = $"给小可爱10个赞！\r\n麻花疼：每天每Q最多点500赞~先到先得！";
-                if (signEnt!=null)
+                if (msg.Message == "签到")
                 {
-                    signed = (signEnt.LastSign.Date == DateTime.Now.Date);
-                    if(signed)
+                    var signEnt = DALSign.GetSign(msg.FromQq);
+                    bool signed = false;
+                    string content = $"给小可爱10个赞！\r\n麻花疼：每天每Q最多点500赞~先到先得！";
+                    if (signEnt != null)
                     {
-                        content = $"您于{signEnt.LastSign.ToShortTimeString()}在{(signEnt.SignGid == msg.FromGroup ? "本群" : "隔壁群")}签过到了！\r\n没有多的赞惹TuT";
+                        signed = (signEnt.LastSign.Date == DateTime.Now.Date);
+                        if (signed)
+                        {
+                            content = $"您于{signEnt.LastSign.ToShortTimeString()}在{(signEnt.SignGid == msg.FromGroup ? "本群" : "隔壁群")}签过到了！\r\n没有多的赞惹TuT";
+                        }
                     }
+                    if (!signed)
+                    {
+
+                        SendLike(msg.FromQq);
+                        DALSign.SetSign(msg.FromQq, msg.FromGroup);
+                    }
+                    _mahuaApi.SendGroupMessage(msg.FromGroup).
+                            Text(CQCode.SendLink(signed ? "您签过到了！" : "签到成功！", CQCode.GetQQHead(msg.FromQq), content))
+                            .Done();
+                    return;
                 }
-                if (!signed)
-                {
-                    
-                    SendLike(msg.FromQq);
-                    DALSign.SetSign(msg.FromQq, msg.FromGroup);
-                }
-                _mahuaApi.SendGroupMessage(msg.FromGroup).
-                        Text(CQCode.SendLink("http://traceless.site/", signed ? "您签过到了！" : "签到成功！", CQCode.GetQQHead(msg.FromQq), content))
-                        .Done();
-                return;
             }
-            successor.ProcessRequset(msg);
+            successor.ProcessRequset(msg,nowModel);
         }
 
         private void SendLike(string toQQ,int times=10)
@@ -59,10 +63,10 @@ namespace Site.Traceless.SmartT.CorP
             } while (time < times);
         }
 
-        public override void ProcessRequset(PrivateMessageFromFriendReceivedContext msg)
+        public override void ProcessRequset(PrivateMessageFromFriendReceivedContext msg, AnalysisMsg nowModel)
         {
             //私聊签到不处理，直接提交下级
-            successor.ProcessRequset(msg);
+            successor.ProcessRequset(msg, nowModel);
         }
     }
 }

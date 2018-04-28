@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using AutoMapper;
 using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
 using Site.Traceless.SmartT.MahuaEvents;
@@ -36,6 +37,7 @@ namespace Site.Traceless.SmartT
                 //注册在“设置中心”中注册菜单，若想订阅菜单点击事件，可以查看教程。http://www.newbe.cf/docs/mahua/2017/12/24/Newbe-Mahua-Navigations.html
                 builder.RegisterType<MyMenuProvider>()
                     .As<IMahuaMenuProvider>();
+                MapperConfig.RegisterMappers();
             }
         }
 
@@ -50,6 +52,10 @@ namespace Site.Traceless.SmartT
                 // 将需要监听的事件注册，若缺少此注册，则不会调用相关的实现类
                 builder.RegisterType<GroupMessageReceivedMahuaEvent>().As<IGroupMessageReceivedMahuaEvent>();
                 builder.RegisterType<PrivateMessageFromFriendReceivedMahuaEvent>().As<IPrivateMessageFromFriendReceivedMahuaEvent>();
+                builder.RegisterType<ExceptionOccuredMahuaEvent>().As<IExceptionOccuredMahuaEvent>();
+                builder.RegisterType<PluginEnabledMahuaEvent>().As<IPluginEnabledMahuaEvent>();
+
+
             }
         }
     }

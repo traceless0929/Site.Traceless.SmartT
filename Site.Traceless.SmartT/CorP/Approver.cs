@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newbe.Mahua.MahuaEvents;
+using Site.Traceless.SmartT.Func;
 
 namespace Site.Traceless.SmartT.CorP
 {
@@ -27,12 +28,12 @@ namespace Site.Traceless.SmartT.CorP
         /// 群消息处理
         /// </summary>
         /// <param name="msg"></param>
-        public abstract void ProcessRequset(GroupMessageReceivedContext msg);
+        public abstract void ProcessRequset(GroupMessageReceivedContext msg, AnalysisMsg nowModel);
 
         /// <summary>
         /// 私聊消息处理
         /// </summary>
         /// <param name="msg"></param>
-        public abstract void ProcessRequset(PrivateMessageFromFriendReceivedContext msg);
+        public abstract void ProcessRequset(PrivateMessageFromFriendReceivedContext msg, AnalysisMsg nowModel);
     }
 }
