@@ -25,7 +25,7 @@ namespace Site.Traceless.SmartT.CorP
             {
                 var signEnt = DALSign.GetSign(msg.FromQq);
                 bool signed = false;
-                string content = $"给小可爱10个赞！\r\n【麻花疼👨：每天每Q最多点500赞~先到先得！】";
+                string content = $"给小可爱10个赞！\r\n麻花疼：每天每Q最多点500赞~先到先得！";
                 if (signEnt!=null)
                 {
                     signed = (signEnt.LastSign.Date == DateTime.Now.Date);
