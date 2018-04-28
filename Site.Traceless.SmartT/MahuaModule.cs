@@ -3,6 +3,7 @@ using AutoMapper;
 using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
 using Site.Traceless.SmartT.MahuaEvents;
+using Site.Traceless.SmartT.Service;
 
 namespace Site.Traceless.SmartT
 {
@@ -50,11 +51,11 @@ namespace Site.Traceless.SmartT
             {
                 base.Load(builder);
                 // 将需要监听的事件注册，若缺少此注册，则不会调用相关的实现类
+                builder.RegisterType<PluginEnabledMahuaEvent>().As<IPluginEnabledMahuaEvent>();
+                builder.RegisterType<ServerRemind>().As<IServerRemind>();
                 builder.RegisterType<GroupMessageReceivedMahuaEvent>().As<IGroupMessageReceivedMahuaEvent>();
                 builder.RegisterType<PrivateMessageFromFriendReceivedMahuaEvent>().As<IPrivateMessageFromFriendReceivedMahuaEvent>();
                 builder.RegisterType<ExceptionOccuredMahuaEvent>().As<IExceptionOccuredMahuaEvent>();
-                builder.RegisterType<PluginEnabledMahuaEvent>().As<IPluginEnabledMahuaEvent>();
-
 
             }
         }
