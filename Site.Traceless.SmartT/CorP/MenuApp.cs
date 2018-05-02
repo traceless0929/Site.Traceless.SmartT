@@ -7,6 +7,7 @@ using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
 using Site.Traceless.SmartT.DAL;
 using Site.Traceless.SmartT.Func;
+using Traceless.TExtension.Tools;
 
 namespace Site.Traceless.SmartT.CorP
 {
@@ -26,6 +27,7 @@ namespace Site.Traceless.SmartT.CorP
                 if (msg.Message.Trim() == "菜单")
                 {
                     _mahuaApi.SendGroupMessage(msg.FromGroup).Text(Config.ConfigModel.MenuStr).Done();
+                    _mahuaApi.SendGroupMessage(msg.FromGroup).Text(CQCode.SendLink("小T完全手册", CQCode.GetQQHead(_mahuaApi.GetLoginQq()), "是兄弟就来点我！", @"https://traceless.site/index.php/archives/62/")).Done();
                     return;
                 }
             }
@@ -39,6 +41,7 @@ namespace Site.Traceless.SmartT.CorP
                 if (msg.Message.Trim() == "菜单")
                 {
                     _mahuaApi.SendPrivateMessage(msg.FromQq).Text(Config.ConfigModel.PrivateMenuStr).Done();
+                    _mahuaApi.SendPrivateMessage(msg.FromQq).Text(CQCode.SendLink("小T完全手册", CQCode.GetQQHead(_mahuaApi.GetLoginQq()), "是兄弟就来点我！", @"https://traceless.site/index.php/archives/62/")).Done();
                     return;
                 }
             }
