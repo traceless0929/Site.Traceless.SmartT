@@ -15,7 +15,7 @@ namespace Site.Traceless.SmartT.CorP
     internal class SignApp : Approver
     {
         public DALSign DALSign = new DALSign();
-        private IMahuaApi _mahuaApi;
+        private readonly IMahuaApi _mahuaApi;
         public SignApp(IMahuaApi mahuaApi)
         {
             _mahuaApi = mahuaApi;

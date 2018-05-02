@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -17,17 +18,20 @@ namespace Site.Traceless.SmartT.Service
         public ServerRemind(IMahuaApi mahuaApi)
         {
             _mahuaApi = mahuaApi;
+            if(timer==null)
+            {
+                timer = new Timer
+                {
+                    Interval = 1000.0
+                };
+                timer.Elapsed += SerOpenRemind_Tick;
+            }
         }
 
         public Task StartAsync(string clu, string Server)
         {
-            timer = new Timer
-            {
-                Interval = 1000.0
-            };
-            timer.Elapsed += SerOpenRemind_Tick;
-            GoServerRemind(clu, Server);
             
+            GoServerRemind(clu, Server);
             return Task.FromResult(0);
         }
         #region 开服查询类
@@ -85,7 +89,7 @@ namespace Site.Traceless.SmartT.Service
                         Config.serList[i, 4] += "|" + clu;
                     }
                     _mahuaApi.SendGroupMessage(clu, CQCode.SendLink("开服监控", CQCode.GetQQHead(_mahuaApi.GetLoginQq()), "已为您开启 " + str + "的监控~请关注群信息，将第一时间通知到群。"));
-                    //timer.Enabled = true;
+                    timer.Enabled = true;
                     flag = true;
                     continue;
                 }
@@ -96,7 +100,7 @@ namespace Site.Traceless.SmartT.Service
             }
         }
 
-        private static void SerOpenRemind_Tick(object sender, EventArgs e)
+        private void SerOpenRemind_Tick(object sender, EventArgs e)
         {
             timer.Enabled = false;
             for (int i = 0; i < Config.serList.GetLength(0); i++)

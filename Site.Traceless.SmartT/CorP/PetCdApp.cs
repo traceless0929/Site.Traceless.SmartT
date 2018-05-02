@@ -12,7 +12,7 @@ namespace Site.Traceless.SmartT.CorP
 {
     internal class PetCdApp : Approver
     {
-        private IMahuaApi _mahuaApi;
+        private readonly IMahuaApi _mahuaApi;
         public PetCdApp(IMahuaApi mahuaApi)
         {
             _mahuaApi = mahuaApi;
@@ -25,7 +25,11 @@ namespace Site.Traceless.SmartT.CorP
                 {
                    if(nowModel.OrderCount>1)
                     {
-                        _mahuaApi.SendGroupMessage(msg.FromGroup).Text(CQCode.SendLink("宠物CD-" + nowModel.Who, "http://www.yayaquanzhidao.top/logo.ico", "点击查看'" + nowModel.Who + "' 结果【来自：鸭鸭宠物CD查询】", Jx3ToolClass.GetPetCd(nowModel.Who, nowModel.How))).Done();
+                        var url = Config.jx3ToolClass.GetPetCd(nowModel.Who, nowModel.How);
+                        if (url != "[宠物CD] 服务器不存在，请联系管理员！")
+                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text(CQCode.SendLink("宠物CD-" + nowModel.Who, "http://file.yayaquanzhidao.com/logo.ico", "点击查看'" + nowModel.Who + "' 结果【来自：鸭鸭宠物CD查询】", url)).Done();
+                        else
+                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text(url).Done();
                         return;
                     }
                 }
@@ -39,7 +43,11 @@ namespace Site.Traceless.SmartT.CorP
             {
                 if (nowModel.OrderCount > 1)
                 {
-                    _mahuaApi.SendPrivateMessage(msg.FromQq).Text(CQCode.SendLink("宠物CD-" + nowModel.Who, "http://www.yayaquanzhidao.top/logo.ico", "点击查看'" + nowModel.Who + "' 结果【来自：鸭鸭宠物CD查询】", Jx3ToolClass.GetPetCd(nowModel.Who, nowModel.How))).Done();
+                    var url = Config.jx3ToolClass.GetPetCd(nowModel.Who, nowModel.How);
+                    if (url != "[宠物CD] 服务器不存在，请联系管理员！")
+                        _mahuaApi.SendPrivateMessage(msg.FromQq).Text(CQCode.SendLink("宠物CD-" + nowModel.Who, "http://file.yayaquanzhidao.com/logo.ico", "点击查看'" + nowModel.Who + "' 结果【来自：鸭鸭宠物CD查询】", url)).Done();
+                    else
+                        _mahuaApi.SendPrivateMessage(msg.FromQq).Text(url).Done();
                     return;
                 }
             }

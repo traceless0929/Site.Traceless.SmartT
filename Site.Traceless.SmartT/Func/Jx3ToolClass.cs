@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Traceless.TExtension.Tools;
 
 namespace Site.Traceless.SmartT.Func
 {
     public class Jx3ToolClass
     {
-        private static Dictionary<string, string> serbiglist = new Dictionary<string, string>();
-        private static Dictionary<string, string> aslist = new Dictionary<string, string>();
-        private static Dictionary<string, int> PetServerList = new Dictionary<string, int>();
+        private Dictionary<string, string> serbiglist = new Dictionary<string, string>();
+        private Dictionary<string, string> aslist = new Dictionary<string, string>();
+        private Dictionary<string, int> PetServerList = new Dictionary<string, int>();
         public Jx3ToolClass()
         {
             serbiglist.Clear();
@@ -34,13 +31,13 @@ namespace Site.Traceless.SmartT.Func
                 }
             }
 
-            var petDic = ToolClass.GetDataFromUrl(@"http://file.yayaquanzhidao.com/JavaScript/FuName.js");
+            var petDic = ToolClass.fileToString("petfu.txt");
             var petDicstr = petDic.GetMidStrings(@"'", @"'")[0];
             PetServerList = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, int>>(petDicstr);
 
         }
 
-        public static string GetPetCd(string serverName, string petName = "")
+        public string GetPetCd(string serverName, string petName = "")
         {
             serbiglist.TryGetValue(serverName, out string factServerName);
             if (string.IsNullOrEmpty(factServerName)) return "[宠物CD] 服务器不存在，请联系管理员！";
@@ -48,6 +45,5 @@ namespace Site.Traceless.SmartT.Func
             return @"http://www.yayaquanzhidao.top/?ID=" + serverId;
         }
 
-        //http://file.yayaquanzhidao.com/fu/funame.js
     }
 }

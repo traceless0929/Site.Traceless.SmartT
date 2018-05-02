@@ -11,7 +11,7 @@ namespace Site.Traceless.SmartT.CorP
 {
     internal class OverApp : Approver
     {
-        private IMahuaApi _mahuaApi;
+        private readonly IMahuaApi _mahuaApi;
         public OverApp(IMahuaApi mahuaApi)
         {
             _mahuaApi = mahuaApi;

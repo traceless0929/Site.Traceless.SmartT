@@ -11,7 +11,7 @@ namespace Site.Traceless.SmartT.CorP
 {
     internal class ManagerApp : Approver
     {
-        private IMahuaApi _mahuaApi;
+        private readonly IMahuaApi _mahuaApi;
         public ManagerApp(IMahuaApi mahuaApi)
         {
             _mahuaApi = mahuaApi;

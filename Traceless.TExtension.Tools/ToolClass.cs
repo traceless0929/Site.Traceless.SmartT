@@ -201,6 +201,32 @@ namespace Traceless.TExtension.Tools
             return res;
         }
 
+
+        public static string fileToString(String fileName)
+        {
+            string strData = "";
+            try
+            {
+                string line;
+                // 创建一个 StreamReader 的实例来读取文件 ,using 语句也能关闭 StreamReader
+                using (System.IO.StreamReader sr = new System.IO.StreamReader(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName)))
+                {
+                    // 从文件读取并显示行，直到文件的末尾 
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        //Console.WriteLine(line);
+                        strData = line;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                // 向用户显示出错消息
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
+            return strData;
+        }
         /// <summary>
         /// 调用GET API
         /// </summary>

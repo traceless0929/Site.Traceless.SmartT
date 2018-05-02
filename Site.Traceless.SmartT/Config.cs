@@ -15,5 +15,6 @@ namespace Site.Traceless.SmartT
     {
         public static ConfigModel ConfigModel { get; set; } = new ConfigModel();
         public static string[,] serList = Jx3OpenTell.GetSerList();
+        public static Jx3ToolClass jx3ToolClass = new Jx3ToolClass();
     }
 }

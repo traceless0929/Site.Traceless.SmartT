@@ -114,6 +114,7 @@
     <Compile Include="CorP\Approver.cs" />
     <Compile Include="CorP\MenuApp.cs" />
     <Compile Include="CorP\ManagerApp.cs" />
+    <Compile Include="CorP\SerOpenApp.cs" />
     <Compile Include="CorP\PetCdApp.cs" />
     <Compile Include="CorP\OverApp.cs" />
     <Compile Include="CorP\SignApp.cs" />

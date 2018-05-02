@@ -12,7 +12,7 @@ namespace Site.Traceless.SmartT.CorP
 {
     internal class MenuApp : Approver
     {
-        private IMahuaApi _mahuaApi;
+        private readonly IMahuaApi _mahuaApi;
         public MenuApp(IMahuaApi mahuaApi)
         {
             _mahuaApi = mahuaApi;

@@ -22,7 +22,6 @@ namespace Site.Traceless.SmartT.MahuaEvents
         {
 
             Config.ConfigModel = DALConfig.GetConfig();
-            
             // 不要忘记在MahuaModule中注册
         }
     }

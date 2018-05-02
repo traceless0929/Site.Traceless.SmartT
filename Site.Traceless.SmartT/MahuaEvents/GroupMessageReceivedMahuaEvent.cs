@@ -24,13 +24,15 @@ namespace Site.Traceless.SmartT.MahuaEvents
             _mahuaApi = mahuaApi;
             _serverRemind = serverRemind;
             _MenuApp = new MenuApp(mahuaApi);
+            _SerOpenApp = new SerOpenApp(mahuaApi, serverRemind);
             _SignApp = new SignApp(mahuaApi);
             _OverApp = new OverApp(mahuaApi);
             _PetCdApp = new PetCdApp(mahuaApi);
             
 
             _MenuApp.SetSuccesser(_SignApp);
-            _SignApp.SetSuccesser(_PetCdApp);
+            _SignApp.SetSuccesser(_SerOpenApp);
+            _SerOpenApp.SetSuccesser(_PetCdApp);
             _PetCdApp.SetSuccesser(_OverApp);
             
         }
@@ -38,30 +40,16 @@ namespace Site.Traceless.SmartT.MahuaEvents
         private SignApp _SignApp;
         private OverApp _OverApp;
         private PetCdApp _PetCdApp;
-        
+        private SerOpenApp _SerOpenApp;
 
+        public bool IsDebug = false;
+        public string DebugGid = "516141713";
         public void ProcessGroupMessage(GroupMessageReceivedContext context)
         {
+            if (IsDebug && context.FromGroup != DebugGid) return;
             try
             {
                 AnalysisMsg nowModel = new AnalysisMsg(context.Message);
-                if (Config.ConfigModel.IsFuncOpen("开服监控"))
-                {
-                    if (nowModel.What == "开服监控")
-                    {
-                        _serverRemind.StartAsync(context.FromGroup, nowModel.Who).GetAwaiter().GetResult();
-                        return;
-                    }
-                }
-                if (Config.ConfigModel.IsFuncOpen("开服查询"))
-                {
-                    if (nowModel.What == "开服查询")
-                    {
-                        _serverRemind.GoServerQuery(context.FromGroup, nowModel.Who);
-                        return;
-                    }
-                }
-                
                 _MenuApp.ProcessRequset(context, nowModel);
             }
             catch(Exception ex)
