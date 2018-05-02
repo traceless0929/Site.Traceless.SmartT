@@ -18,29 +18,27 @@ namespace Site.Traceless.SmartT.MahuaEvents
             IMahuaApi mahuaApi)
         {
             _mahuaApi = mahuaApi;
-            _MenuApp = new MenuApp(mahuaApi);
-            _SignApp = new SignApp(mahuaApi);
             _OverApp = new OverApp(mahuaApi);
-            _ManagerApp = new ManagerApp(mahuaApi);
-            _PetCdApp = new PetCdApp(mahuaApi);
+            _ManagerApp = new ManagerApp(mahuaApi, _OverApp);
+            _AdviseApp = new AdviseApp(mahuaApi, _ManagerApp);
+            _PetCdApp = new PetCdApp(mahuaApi, _AdviseApp);
+            _SignApp = new SignApp(mahuaApi, _PetCdApp);
+            _MenuApp = new MenuApp(mahuaApi, _SignApp);
 
-            _ManagerApp.SetSuccesser(_MenuApp);
-            _MenuApp.SetSuccesser(_SignApp);
-            _SignApp.SetSuccesser(_PetCdApp);
-            _PetCdApp.SetSuccesser(_OverApp);
         }
         private MenuApp _MenuApp;
         private SignApp _SignApp;
         private OverApp _OverApp;
         private ManagerApp _ManagerApp;
         private PetCdApp _PetCdApp;
+        private AdviseApp _AdviseApp;
 
         public void ProcessFriendMessage(PrivateMessageFromFriendReceivedContext context)
         {
             try
             {
                 AnalysisMsg nowModel = new AnalysisMsg(context.Message);
-                _ManagerApp.ProcessRequset(context, nowModel);
+                _MenuApp.ProcessRequset(context, nowModel);
             }
             catch (Exception ex)
             {

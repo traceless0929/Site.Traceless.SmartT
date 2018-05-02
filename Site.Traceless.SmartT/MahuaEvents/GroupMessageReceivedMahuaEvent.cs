@@ -23,24 +23,20 @@ namespace Site.Traceless.SmartT.MahuaEvents
         {
             _mahuaApi = mahuaApi;
             _serverRemind = serverRemind;
-            _MenuApp = new MenuApp(mahuaApi);
-            _SerOpenApp = new SerOpenApp(mahuaApi, serverRemind);
-            _SignApp = new SignApp(mahuaApi);
-            _OverApp = new OverApp(mahuaApi);
-            _PetCdApp = new PetCdApp(mahuaApi);
-            
 
-            _MenuApp.SetSuccesser(_SignApp);
-            _SignApp.SetSuccesser(_SerOpenApp);
-            _SerOpenApp.SetSuccesser(_PetCdApp);
-            _PetCdApp.SetSuccesser(_OverApp);
-            
+            _OverApp = new OverApp(mahuaApi);
+            _AdviseApp = new AdviseApp(mahuaApi, _OverApp);
+            _PetCdApp = new PetCdApp(mahuaApi, _AdviseApp);
+            _SerOpenApp = new SerOpenApp(mahuaApi, serverRemind, _PetCdApp);
+            _SignApp = new SignApp(mahuaApi, _SerOpenApp);
+            _MenuApp = new MenuApp(mahuaApi,_SignApp); 
         }
         private MenuApp _MenuApp;
         private SignApp _SignApp;
         private OverApp _OverApp;
         private PetCdApp _PetCdApp;
         private SerOpenApp _SerOpenApp;
+        private AdviseApp _AdviseApp;
 
         public bool IsDebug = false;
         public string DebugGid = "516141713";

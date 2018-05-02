@@ -5,27 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
-using Site.Traceless.SmartT.DAL;
 using Site.Traceless.SmartT.Func;
 
 namespace Site.Traceless.SmartT.CorP
 {
-    internal class MenuApp : Approver
+    internal class AdviseApp : Approver
     {
         private readonly IMahuaApi _mahuaApi;
-        public MenuApp(IMahuaApi mahuaApi, Approver approver)
+        public AdviseApp(IMahuaApi mahuaApi, Approver approver)
         {
             _mahuaApi = mahuaApi;
             this.SetSuccesser(approver);
         }
-
         public override void ProcessRequset(GroupMessageReceivedContext msg, AnalysisMsg nowModel)
         {
-            if (Config.ConfigModel.IsFuncOpen("菜单"))
+            if (Config.ConfigModel.IsFuncOpen("建议"))
             {
-                if (msg.Message.Trim() == "菜单")
+                if (nowModel.What == "建议")
                 {
-                    _mahuaApi.SendGroupMessage(msg.FromGroup).Text(Config.ConfigModel.MenuStr).Done();
+                    _mahuaApi.SendPrivateMessage(Config.ConfigModel.MasterQQ).Text($"来自群{msg.FromGroup}的{msg.FromQq}:{nowModel.Who} {nowModel.How}").Done();
                     return;
                 }
             }
@@ -34,11 +32,11 @@ namespace Site.Traceless.SmartT.CorP
 
         public override void ProcessRequset(PrivateMessageFromFriendReceivedContext msg, AnalysisMsg nowModel)
         {
-            if (Config.ConfigModel.IsFuncOpen("个人菜单"))
+            if (Config.ConfigModel.IsFuncOpen("建议"))
             {
-                if (msg.Message.Trim() == "菜单")
+                if (nowModel.What == "建议")
                 {
-                    _mahuaApi.SendPrivateMessage(msg.FromQq).Text(Config.ConfigModel.PrivateMenuStr).Done();
+                    _mahuaApi.SendPrivateMessage(Config.ConfigModel.MasterQQ).Text($"来自个人{msg.FromQq}:{nowModel.Who} {nowModel.How}").Done();
                     return;
                 }
             }

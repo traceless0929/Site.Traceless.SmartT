@@ -112,6 +112,7 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="CorP\Approver.cs" />
+    <Compile Include="CorP\AdviseApp.cs" />
     <Compile Include="CorP\MenuApp.cs" />
     <Compile Include="CorP\ManagerApp.cs" />
     <Compile Include="CorP\SerOpenApp.cs" />

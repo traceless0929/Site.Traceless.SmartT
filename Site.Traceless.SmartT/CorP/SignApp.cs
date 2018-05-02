@@ -16,9 +16,10 @@ namespace Site.Traceless.SmartT.CorP
     {
         public DALSign DALSign = new DALSign();
         private readonly IMahuaApi _mahuaApi;
-        public SignApp(IMahuaApi mahuaApi)
+        public SignApp(IMahuaApi mahuaApi, Approver approver)
         {
             _mahuaApi = mahuaApi;
+            this.SetSuccesser(approver);
         }
         public override void ProcessRequset(GroupMessageReceivedContext msg, AnalysisMsg nowModel)
         {

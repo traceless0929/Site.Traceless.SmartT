@@ -14,12 +14,13 @@ namespace Site.Traceless.SmartT.CorP
     {
         private readonly IMahuaApi _mahuaApi;
         private readonly IServerRemind _serverRemind;
-        public SerOpenApp(IMahuaApi mahuaApi, IServerRemind serverRemind)
+        public SerOpenApp(IMahuaApi mahuaApi, IServerRemind serverRemind, Approver approver)
         {
             _mahuaApi = mahuaApi;
             _serverRemind = serverRemind;
+            this.SetSuccesser(approver);
         }
-        public override void ProcessRequset(GroupMessageReceivedContext msg, AnalysisMsg nowModel)
+    public override void ProcessRequset(GroupMessageReceivedContext msg, AnalysisMsg nowModel)
         {
             if (Config.ConfigModel.IsFuncOpen("开服监控"))
             {

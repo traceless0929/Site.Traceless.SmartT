@@ -13,9 +13,10 @@ namespace Site.Traceless.SmartT.CorP
     internal class PetCdApp : Approver
     {
         private readonly IMahuaApi _mahuaApi;
-        public PetCdApp(IMahuaApi mahuaApi)
+        public PetCdApp(IMahuaApi mahuaApi, Approver approver)
         {
             _mahuaApi = mahuaApi;
+            this.SetSuccesser(approver);
         }
         public override void ProcessRequset(GroupMessageReceivedContext msg,AnalysisMsg nowModel)
         {
