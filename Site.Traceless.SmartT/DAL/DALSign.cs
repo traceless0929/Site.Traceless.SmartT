@@ -37,7 +37,6 @@ namespace Site.Traceless.SmartT.DAL
                 {
                     db.TSigns
                         .Where(p => p.Id == res.Id)
-                        .Set(p => p.Gid, gid)
                         .Set(p => p.Pid, pid)
                         .Set(p => p.SignGid, gid)
                         .Set(p => p.LastSign, DateTime.Now)
