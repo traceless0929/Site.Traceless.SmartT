@@ -34,7 +34,7 @@ namespace Traceless.Api
                     {
                         Name = "TDatabase",
                         ProviderName = "MySql",
-                        ConnectionString = @"Server=47.98.242.55;Port=3306;Database=SmartTSql;Uid=root;Pwd=XieBin741236;charset=utf8mb4;"
+                        ConnectionString = @"Server=;Port=;Database=;Uid=;Pwd=;charset=;"
                     };
             }
         }
