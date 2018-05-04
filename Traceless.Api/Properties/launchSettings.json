@@ -1,0 +1,10 @@
+{
+  "Traceless.Api": {
+    "commandName": "Traceless.Api",
+    "launchBrowser": true,
+    "launchUrl": "swagger/",
+    "environmentVariables": {
+      "ASPNETCORE_ENVIRONMENT": "Development"
+    }
+  }
+}
