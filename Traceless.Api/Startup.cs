@@ -11,6 +11,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
+using Traceless.Api.Services;
+using Traceless.Api.Services.Interface;
 
 namespace Traceless.Api
 {
@@ -55,6 +57,9 @@ namespace Traceless.Api
 
             services.AddMvcCore()
                 .AddJsonFormatters();
+
+            services.AddTransient<ITestService, TestService>();
+            LinqToDB.Data.DataConnection.DefaultSettings = new MySettings();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

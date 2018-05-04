@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Traceless.Api.Services.Interface;
 
 namespace Traceless.Api.Controllers
 {
@@ -12,11 +13,10 @@ namespace Traceless.Api.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly ITestService _testService;
+        public ValuesController(ITestService testService)
         {
-            return new string[] { "value1", "value2" };
+            _testService = testService;
         }
 
         // GET api/values/5
@@ -42,6 +42,18 @@ namespace Traceless.Api.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        /// <summary>
+        /// 获取签到排名
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public Dictionary<string,DateTime> GetTopSign(int count,DateTime dt)
+        {
+            return _testService.GetTopSignByDay(dt, count);
         }
     }
 }
