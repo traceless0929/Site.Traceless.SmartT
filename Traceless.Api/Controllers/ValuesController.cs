@@ -43,17 +43,5 @@ namespace Traceless.Api.Controllers
         public void Delete(int id)
         {
         }
-
-        /// <summary>
-        /// 获取签到排名
-        /// </summary>
-        /// <param name="count"></param>
-        /// <param name="dt"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public Dictionary<string,DateTime> GetTopSign(int count,DateTime dt)
-        {
-            return _testService.GetTopSignByDay(dt, count);
-        }
     }
 }

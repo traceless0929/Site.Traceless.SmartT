@@ -7,6 +7,6 @@ namespace Traceless.Api.Services.Interface
 {
     public interface ITestService
     {
-        Dictionary<string,DateTime> GetTopSignByDay(DateTime dt,int count);
+        
     }
 }
