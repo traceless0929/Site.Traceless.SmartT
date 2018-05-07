@@ -25,7 +25,7 @@ namespace Traceless.Api.Controllers
         /// <param name="count"></param>
         /// <param name="dt"></param>
         /// <returns></returns>
-        /// <remarks>按照时间早到晚返回-<时间-QQ>字典</remarks>
+        /// <remarks>按照时间早到晚返回 {时间}-{QQ} 字典</remarks>
         [HttpGet("GetTopSign")]
         public Dictionary<DateTime, string> GetTopSign(int count,DateTime dt)
         {
