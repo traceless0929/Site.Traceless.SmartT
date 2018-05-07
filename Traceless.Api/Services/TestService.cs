@@ -23,7 +23,7 @@ namespace Traceless.Api.Services
         {
             using (var db = new SmartTSqlDB())
             {
-                return db.TSigns.Where(p => p.LastSign.Date == dt.Date).OrderByDescending(p => p.LastSign.Ticks).Take(count).ToDictionary(c=>c.Pid,c=>c.LastSign);
+                return db.TSigns.Where(p => p.LastSign.Date == dt.Date).OrderBy(p => p.LastSign.Ticks).Take(count).ToDictionary(c=>c.Pid,c=>c.LastSign);
             }
         }
     }
