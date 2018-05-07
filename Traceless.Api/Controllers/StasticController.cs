@@ -8,7 +8,7 @@ using Traceless.Api.Services.Interface;
 namespace Traceless.Api.Controllers
 {
     /// <summary>
-    /// 这是个没啥用的控制器
+    /// 统计相关
     /// </summary>
     [Route("api/[controller]")]
     public class StasticController : Controller

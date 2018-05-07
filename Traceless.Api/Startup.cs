@@ -59,6 +59,7 @@ namespace Traceless.Api
                 .AddJsonFormatters();
 
             services.AddTransient<ITestService, TestService>();
+            services.AddTransient<IStasticService, StasticService>();
             //这里需要设置一下数据库链接，不然Linq2db连不上数据库
             LinqToDB.Data.DataConnection.DefaultSettings = new MySettings();
         }
