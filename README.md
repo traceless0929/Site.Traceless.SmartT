@@ -4,7 +4,7 @@
 光荣地使用 [Newbe.Mahua.Framework-麻花疼](https://github.com/Newbe36524/Newbe.Mahua.Framework) 麻花疼！全球最装逼的QQ机器人C#SDK！没有之一！ 
 
 
-#Traceless.Api
+# Traceless.Api
 这个神奇的WEBAPI项目使用了linq2db.core 其中有一个帮助类,他是这样的
 ```C#
 public class ConnectionStringSettings : IConnectionStringSettings
