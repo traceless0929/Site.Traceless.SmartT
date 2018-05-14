@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DBModel\DBModel.csproj" />
+    <ProjectReference Include="..\Traceless.Util\Traceless.Util.csproj" />
   </ItemGroup>
 
 </Project>

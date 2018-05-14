@@ -10,6 +10,6 @@ namespace Traceless.Api.Services.Interface
     /// </summary>
     public interface IStasticService
     {
-        Dictionary<DateTime, string> GetTopSignByDay(DateTime dt, int count);
+        Dictionary<long, string> GetTopSignByDay(DateTime dt, int count);
     }
 }

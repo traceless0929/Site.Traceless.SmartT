@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TModel", "TModel\TModel.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Traceless.Api", "Traceless.Api\Traceless.Api.csproj", "{5BD3B428-BCA6-4516-BD67-CF12D551D226}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Traceless.Util", "Traceless.Util\Traceless.Util.csproj", "{539C4042-2508-47AD-A7F0-52D38F6A5DC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5BD3B428-BCA6-4516-BD67-CF12D551D226}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BD3B428-BCA6-4516-BD67-CF12D551D226}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BD3B428-BCA6-4516-BD67-CF12D551D226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{539C4042-2508-47AD-A7F0-52D38F6A5DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{539C4042-2508-47AD-A7F0-52D38F6A5DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{539C4042-2508-47AD-A7F0-52D38F6A5DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{539C4042-2508-47AD-A7F0-52D38F6A5DC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
