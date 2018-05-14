@@ -27,7 +27,7 @@ namespace Site.Traceless.SmartT.CorP
                 if (msg.Message.Trim() == "菜单")
                 {
                     _mahuaApi.SendGroupMessage(msg.FromGroup).Text(Config.ConfigModel.MenuStr).Done();
-                    _mahuaApi.SendGroupMessage(msg.FromGroup).Text(CQCode.SendLink("小T完全手册", CQCode.GetQQHead(_mahuaApi.GetLoginQq()), "是兄弟就来点我！", @"https://traceless.site/index.php/archives/62/")).Done();
+                    _mahuaApi.SendGroupMessage(msg.FromGroup).Text(@"小T完全手册：https://traceless.site/index.php/archives/62/").Newline().Text("网站没交保护费提醒危险网站，在这里本人实名点X麻花疼！甘霖娘！").Done();
                     return;
                 }
             }
@@ -41,7 +41,7 @@ namespace Site.Traceless.SmartT.CorP
                 if (msg.Message.Trim() == "菜单")
                 {
                     _mahuaApi.SendPrivateMessage(msg.FromQq).Text(Config.ConfigModel.PrivateMenuStr).Done();
-                    _mahuaApi.SendPrivateMessage(msg.FromQq).Text(CQCode.SendLink("小T完全手册", CQCode.GetQQHead(_mahuaApi.GetLoginQq()), "是兄弟就来点我！", @"https://traceless.site/index.php/archives/62/")).Done();
+                    _mahuaApi.SendPrivateMessage(msg.FromQq).Text(@"小T完全手册：https://traceless.site/index.php/archives/62/").Newline().Text("网站没交保护费提醒危险网站，在这里本人实名点X麻花疼！甘霖娘！").Done();
                     return;
                 }
             }
