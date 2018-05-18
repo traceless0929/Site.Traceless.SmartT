@@ -20,7 +20,8 @@ namespace Site.Traceless.SmartT.MahuaEvents
             _mahuaApi = mahuaApi;
             _OverApp = new OverApp(mahuaApi);
             _ManagerApp = new ManagerApp(mahuaApi, _OverApp);
-            _AdviseApp = new AdviseApp(mahuaApi, _ManagerApp);
+            _ZJSubmitApp = new ZJSubmitApp(mahuaApi, _ManagerApp);
+            _AdviseApp = new AdviseApp(mahuaApi, _ZJSubmitApp);
             _PetCdApp = new PetCdApp(mahuaApi, _AdviseApp);
             _SignApp = new SignApp(mahuaApi, _PetCdApp);
             _MenuApp = new MenuApp(mahuaApi, _SignApp);
@@ -32,6 +33,7 @@ namespace Site.Traceless.SmartT.MahuaEvents
         private ManagerApp _ManagerApp;
         private PetCdApp _PetCdApp;
         private AdviseApp _AdviseApp;
+        private ZJSubmitApp _ZJSubmitApp;
 
         public void ProcessFriendMessage(PrivateMessageFromFriendReceivedContext context)
         {

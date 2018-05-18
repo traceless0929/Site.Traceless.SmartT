@@ -215,7 +215,7 @@ namespace Traceless.TExtension.Tools
                     while ((line = sr.ReadLine()) != null)
                     {
                         //Console.WriteLine(line);
-                        strData = line;
+                        strData += line+Environment.NewLine;
                     }
                 }
             }

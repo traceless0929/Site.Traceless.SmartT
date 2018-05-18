@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Traceless.TExtension.Tools
 {
-    class BaiDuAi
+    public class BaiDuAi
     {
         string _APP_ID = "";
         string _API_KEY = "";
