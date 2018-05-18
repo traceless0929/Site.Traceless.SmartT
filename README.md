@@ -43,8 +43,8 @@ public class ConnectionStringSettings : IConnectionStringSettings
 
 # Traceless.TExtension.Tools
 
-小T工具类，进行网页抓取、字符串处理、CQ码组合等各种杂七杂八的方法，其实很多方法应该放到Traceless.Util里，但是因为这里的方法都是老版小T的方法，所以懒得移...
+小T工具类，进行网页抓取、字符串处理、CQ码组合等各种杂七杂八的方法,framework版本
 
 # Traceless.Util 
 
-通用工具类，小T无关，任何代码中都可能使用到的方法（Traceless.TExtension.Tools 中很多通用方法其实可以移过来，可是，有点懒）
+通用工具类，小T无关，任何代码中都可能使用到的方法，供NETCORE调用
