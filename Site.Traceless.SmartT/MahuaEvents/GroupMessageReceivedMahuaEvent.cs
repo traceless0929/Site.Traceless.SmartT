@@ -53,7 +53,7 @@ namespace Site.Traceless.SmartT.MahuaEvents
             }
             catch(Exception ex)
             {
-                _mahuaApi.SendPrivateMessage(Config.ConfigModel.MasterQQ).Text(ex.ToString());
+                _mahuaApi.SendPrivateMessage(Config.ConfigModel.MasterQQ).Text(ex.ToString()).Done();
             }
             // 不要忘记在MahuaModule中注册
         }

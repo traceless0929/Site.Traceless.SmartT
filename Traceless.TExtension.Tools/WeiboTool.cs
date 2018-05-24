@@ -34,7 +34,7 @@ namespace Traceless.TExtension.Tools
                     var UserInfo =  ContentNodes.FirstOrDefault()?.SelectNodes("./a[@class='user_name']");
                     listItem.Author = UserInfo.FirstOrDefault()?.Attributes["title"].Value;
                     var contentTxt = ContentNodes.FirstOrDefault()?.SelectNodes("./cite[@class='user_words']");
-                    listItem.ContentStr = contentTxt.FirstOrDefault()?.InnerText.Substring(1);
+                    listItem.ContentStr = contentTxt.FirstOrDefault()?.InnerText.Substring(1).Replace(" ​","").Replace(@"&middot;", "·");
                     HtmlNodeCollection ImageNodes = item.SelectNodes("./div[@class='weibo_img_container']");
                     listItem.Pic = "http:"+ImageNodes.FirstOrDefault()?.SelectNodes("./img[@class='WB_big_cursor']").FirstOrDefault()?.Attributes["src"].Value.Replace("thumbnail", "bmiddle");
                     ret.Add(listItem);
