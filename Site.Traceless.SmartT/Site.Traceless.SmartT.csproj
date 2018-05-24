@@ -122,7 +122,7 @@
     <Compile Include="CorP\PetCdApp.cs" />
     <Compile Include="CorP\OverApp.cs" />
     <Compile Include="CorP\SignApp.cs" />
-    <Compile Include="CorP\ZJSubmitApp.cs" />
+    <Compile Include="CorP\DayTaskApp.cs" />
     <Compile Include="DAL\DALConfig.cs" />
     <Compile Include="DAL\DALSign.cs" />
     <Compile Include="Func\AnalysisMsg.cs" />

@@ -7,24 +7,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Traceless.TExtension.Tools;
 
 namespace Site.Traceless.SmartT.CorP
 {
-    internal class ZJSubmitApp : Approver
+    internal class DayTaskApp : Approver
     {
         private readonly IMahuaApi _mahuaApi;
-        public ZJSubmitApp(IMahuaApi mahuaApi, Approver approver)
+        public DayTaskApp(IMahuaApi mahuaApi, Approver approver)
         {
             _mahuaApi = mahuaApi;
             this.SetSuccesser(approver);
         }
         public override void ProcessRequset(GroupMessageReceivedContext msg, AnalysisMsg nowModel)
         {
-            if (Config.ConfigModel.IsFuncOpen("查排名"))
+            if (Config.ConfigModel.IsFuncOpen("查日常"))
             {
-                if (nowModel.What == "查排名")
+                if (nowModel.What == "查日常")
                 {
-                    
+                    var item = WeiboTool.GetWeiBoTopicContent("剑网3江湖百晓生", "剑网3官方微博").FirstOrDefault();
+                    if (item == null)
+                        _mahuaApi.SendGroupMessage(msg.FromGroup, "[日常]QAQ查询失败，请联系管理员");
+                    else
+                    {
+                        _mahuaApi.SendGroupMessage(msg.FromGroup).Text("[日常]来自 " + item.Author + "：").Newline()
+                            .Text(item.ContentStr).Newline().Text(@"本信息由新浪微博-剑网3江湖百晓生-超话提供");
+                    }
                 }
             }
             successor.ProcessRequset(msg, nowModel);
@@ -32,14 +40,6 @@ namespace Site.Traceless.SmartT.CorP
 
         public override void ProcessRequset(PrivateMessageFromFriendReceivedContext msg, AnalysisMsg nowModel)
         {
-            if (Config.ConfigModel.IsFuncOpen("站街申报"))
-            {
-                if (nowModel.What == "站街申报")
-                {
-                    
-                    return;
-                }
-            }
             successor.ProcessRequset(msg, nowModel);
         }
     }
