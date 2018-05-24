@@ -31,7 +31,7 @@ namespace Site.Traceless.SmartT.CorP
                     else
                     {
                         _mahuaApi.SendGroupMessage(msg.FromGroup).Text("[日常]来自 " + item.Author + "：").Newline()
-                            .Text(item.ContentStr).Newline().Text(@"本信息由新浪微博-剑网3江湖百晓生-超话提供");
+                            .Text(item.ContentStr).Newline().Text(@"本信息由新浪微博-剑网3江湖百晓生-超话提供").Done();
                     }
                 }
             }
