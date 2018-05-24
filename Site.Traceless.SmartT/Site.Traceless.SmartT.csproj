@@ -137,7 +137,6 @@
     <Compile Include="MyMenuProvider.cs" />
     <Compile Include="PluginInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\GlobalService.cs" />
     <Compile Include="Service\Interface\IServerRemind.cs" />
     <Compile Include="Service\ServerRemind.cs" />
   </ItemGroup>
