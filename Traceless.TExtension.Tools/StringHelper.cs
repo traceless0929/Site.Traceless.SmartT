@@ -32,5 +32,29 @@ namespace Traceless.TExtension.Tools
             }
             return result;
         }
+
+        public static string[] GetRegexStr(string reString,string regexstr)
+        {
+
+            Regex regex = new Regex(regexstr);
+            MatchCollection matchCollection = regex.Matches(reString);
+            bool flag = matchCollection.Count > 0;
+            string[] result;
+            if (flag)
+            {
+                string[] array = new string[matchCollection.Count];
+                for (int i = 0; i < matchCollection.Count; i++)
+                {
+                    array[i] = matchCollection[i].Value;
+                }
+                result = array;
+            }
+            else
+            {
+                result = null;
+            }
+            return result;
+        }
+
     }
 }

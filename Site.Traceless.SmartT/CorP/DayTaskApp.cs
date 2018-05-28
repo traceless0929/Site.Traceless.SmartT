@@ -25,7 +25,7 @@ namespace Site.Traceless.SmartT.CorP
             {
                 if (nowModel.What == "查日常")
                 {
-                    var item = WeiboTool.GetWeiBoTopicContent("剑网3江湖百晓生", "剑网3官方微博").FirstOrDefault();
+                    var item = WeiboTool.GetWeiBoTopicContent("剑网3江湖百晓生", "剑网3官方微博").OrderByDescending(p=>p.Time).FirstOrDefault();
                     if (item == null)
                         _mahuaApi.SendGroupMessage(msg.FromGroup, "[日常]QAQ查询失败，请联系管理员");
                     else
@@ -33,7 +33,7 @@ namespace Site.Traceless.SmartT.CorP
                         if(nowModel.Who=="文")
                             _mahuaApi.SendGroupMessage(msg.FromGroup).Text("[日常]来自 " + item.Author + "：").Newline().Text(item.ContentStr).Newline().Text(@"本信息由新浪微博-剑网3江湖百晓生-超话提供").Done();
                         else
-                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text(CQCode.SendLink("查日常-来自微博", item.Pic,item.ContentStr.Replace("\n","").Replace("#剑网3江湖百晓生#",""),item.Pic)).Done();
+                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text(CQCode.SendLink("查日常-来自微博", item.Pic,item.ContentStr.Replace("\n","").Replace("#剑网3江湖百晓生#","").Trim(),item.Pic)).Done();
                     }
                 }
             }

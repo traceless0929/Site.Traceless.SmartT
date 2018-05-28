@@ -20,5 +20,9 @@ namespace Traceless.TExtension.Tools.Model
         /// 微博图片
         /// </summary>
         public string Pic { get; set; }
+        /// <summary>
+        /// 时间
+        /// </summary>
+        public DateTime Time { get; set; }
     }
 }

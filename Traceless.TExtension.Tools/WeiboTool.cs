@@ -37,6 +37,10 @@ namespace Traceless.TExtension.Tools
                     listItem.ContentStr = contentTxt.FirstOrDefault()?.InnerText.Substring(1).Replace(" ​","").Replace(@"&middot;", "·");
                     HtmlNodeCollection ImageNodes = item.SelectNodes("./div[@class='weibo_img_container']");
                     listItem.Pic = "http:"+ImageNodes.FirstOrDefault()?.SelectNodes("./img[@class='WB_big_cursor']").FirstOrDefault()?.Attributes["src"].Value.Replace("thumbnail", "bmiddle");
+                    //此段为特殊用法，没有通用性，使用时可以吧下面三行删除，自己在item中进行./a[@class='weibo_time']的抓取
+                    string regexCode = "\\d{1,2}月\\d{1,2}日"; //正则代码
+                    var timeArr = StringHelper.GetRegexStr(listItem.ContentStr, regexCode);
+                    listItem.Time = Convert.ToDateTime(timeArr.FirstOrDefault());
                     ret.Add(listItem);
                 }
 
