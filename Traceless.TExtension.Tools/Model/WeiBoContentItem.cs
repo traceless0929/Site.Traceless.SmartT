@@ -24,6 +24,10 @@ namespace Traceless.TExtension.Tools.Model
         /// 时间
         /// </summary>
         public DateTime Time { get; set; }
+        /// <summary>
+        /// 话题ID
+        /// </summary>
+        public Int64 TopicId { get; set; }
     }
 
     public class WeiBoTopicRes

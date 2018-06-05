@@ -64,13 +64,25 @@ namespace Traceless.TExtension.Tools
                     Author=p.mblog.user.screen_name,
                     ContentStr= htmlDocument.DocumentNode?.InnerText
                 };
-                ////此段为特殊用法，没有通用性，使用时可以吧下面三行删除，自己在mblog中抓取
-                string regexCode = "\\d{1,2}月\\d{1,2}日"; //正则代码
-                var timeArr = StringHelper.GetRegexStr(item.ContentStr, regexCode);
-                item.Time = Convert.ToDateTime(timeArr.FirstOrDefault());
+                if (p.mblog.created_at.Contains("分钟"))
+                {
+                    var getNum =Convert.ToInt32(p.mblog.created_at.Replace("分钟前", ""));
+                    item.Time = DateTime.Now.AddMinutes(-getNum);
+                }
+                else if (p.mblog.created_at.Contains("小时"))
+                {
+                    var getNum = Convert.ToInt32(p.mblog.created_at.Replace("小时前", ""));
+                    item.Time = DateTime.Now.AddHours(-getNum);
+                }
+                else
+                {
+                    item.Time = Convert.ToDateTime(p.mblog.created_at);
+                }
+                item.TopicId = Convert.ToInt64(p.mblog.id);
+
                 theres.Add(item);
             });
-            return theres.Where(p=>p.Author.Trim().Contains(targetName)).ToList();
+            return theres.Where(p=>p.Author.Trim().Contains(targetName)).OrderByDescending(p=>p.TopicId).ToList();
         }
 
         /// <summary>
@@ -100,10 +112,6 @@ namespace Traceless.TExtension.Tools
                     listItem.ContentStr = contentTxt.FirstOrDefault()?.InnerText.Substring(1).Replace(" ​","").Replace(@"&middot;", "·");
                     HtmlNodeCollection ImageNodes = item.SelectNodes("./div[@class='weibo_img_container']");
                     listItem.Pic = "http:"+ImageNodes.FirstOrDefault()?.SelectNodes("./img[@class='WB_big_cursor']").FirstOrDefault()?.Attributes["src"].Value.Replace("thumbnail", "bmiddle");
-                    //此段为特殊用法，没有通用性，使用时可以吧下面三行删除，自己在item中进行./a[@class='weibo_time']的抓取
-                    string regexCode = "\\d{1,2}月\\d{1,2}日"; //正则代码
-                    var timeArr = StringHelper.GetRegexStr(listItem.ContentStr, regexCode);
-                    listItem.Time = Convert.ToDateTime(timeArr.FirstOrDefault());
                     ret.Add(listItem);
                 }
 
