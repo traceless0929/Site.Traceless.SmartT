@@ -23,17 +23,17 @@ namespace Traceless.TExtension.Tools
             string topicUrl = "";
             HtmlWeb webClient = new HtmlWeb();
             HtmlDocument doc = webClient.Load("https://s.weibo.com/apps/" + topicName+ "&pagetype=topic&topic=1&Refer=weibo_topic");
-            HtmlNodeCollection ContentList = doc.DocumentNode.SelectNodes("//a[@suda-data='key=t_blog_search_interest&value=interest_topic_icon']");
+            HtmlNodeCollection ContentList = doc.DocumentNode.SelectNodes("//a[@class='W_btn_b6']");
             var item = ContentList.FirstOrDefault();
             if (item == null) return null;
             else
             {
-                var res = item.Attributes["href"];
+                var res = item.Attributes["action-data"];
                 topicUrl = res.Value;
             }
 
-            var ret = topicUrl.Substring(topicUrl.LastIndexOf('/')+1);
-            return ret;
+            var ret = topicUrl.Substring(topicUrl.LastIndexOf(':')+1);
+             return ret;
         }
 
         /// <summary>
@@ -73,6 +73,16 @@ namespace Traceless.TExtension.Tools
                 {
                     var getNum = Convert.ToInt32(p.mblog.created_at.Replace("小时前", ""));
                     item.Time = DateTime.Now.AddHours(-getNum);
+                }
+                else if (p.mblog.created_at.Contains("昨天"))
+                {
+                    var getNum = Convert.ToDateTime(p.mblog.created_at.Replace("昨天", "").Trim());
+                    item.Time = getNum.AddDays(-1);
+                }
+                else if (p.mblog.created_at.Contains("前天"))
+                {
+                    var getNum = Convert.ToDateTime(p.mblog.created_at.Replace("前天", "").Trim());
+                    item.Time = getNum.AddDays(-2);
                 }
                 else
                 {
