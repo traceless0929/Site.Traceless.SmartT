@@ -31,7 +31,7 @@ namespace Site.Traceless.SmartT.CorP
                 {
                     if (lastestItem != null)
                     {
-                        item = lastestItem.Time.Date == DateTime.Now.Date ? lastestItem : WeiboTool.GetWeiBoTopicContentV2("剑网3江湖百晓生", "剑网3官方微博").FirstOrDefault();
+                        item = lastestItem.Time.Date == DateTime.Now.Date ? lastestItem : WeiboTool.GetWeiBoTopicContentV1("100808caa7b601042a88d12fe2d284f3891665", "剑网3官方微博").FirstOrDefault();
                     }
                     else
                         item = WeiboTool.GetWeiBoTopicContentV1(WeiboTool.GetWeiBoTopicId("剑网3江湖百晓生"), "剑网3官方微博").OrderByDescending(p => p.Time).FirstOrDefault();
