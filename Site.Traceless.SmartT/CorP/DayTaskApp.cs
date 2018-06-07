@@ -31,7 +31,7 @@ namespace Site.Traceless.SmartT.CorP
                 {
                     if (lastestItem != null)
                     {
-                        item = lastestItem.Time.Date == DateTime.Now.Date ? lastestItem : WeiboTool.GetWeiBoTopicContentV1(WeiboTool.GetWeiBoTopicId("剑网3江湖百晓生"), "剑网3官方微博").OrderByDescending(p => p.Time).FirstOrDefault();
+                        item = lastestItem.Time.Date == DateTime.Now.Date ? lastestItem : WeiboTool.GetWeiBoTopicContentV2("剑网3江湖百晓生", "剑网3官方微博").FirstOrDefault();
                     }
                     else
                         item = WeiboTool.GetWeiBoTopicContentV1(WeiboTool.GetWeiBoTopicId("剑网3江湖百晓生"), "剑网3官方微博").OrderByDescending(p => p.Time).FirstOrDefault();
@@ -43,7 +43,7 @@ namespace Site.Traceless.SmartT.CorP
                         if(nowModel.Who=="文")
                             _mahuaApi.SendGroupMessage(msg.FromGroup).Text("[日常]来自 " + item.Author + "：").Newline().Text(item.ContentStr).Newline().Text(@"本信息由新浪微博-剑网3江湖百晓生-超话提供").Done();
                         else
-                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text(CQCode.SendLink("查日常-来自微博", item.Pic,item.ContentStr.Replace("#剑网3江湖百晓生#","").Trim(),item.Pic)).Done();
+                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text(CQCode.SendLink("查日常-"+item.Time.ToShortDateString(), item.Pic,item.ContentStr.Replace("#剑网3江湖百晓生#","").Trim(),item.Pic)).Done();
                     }
                 }
             }

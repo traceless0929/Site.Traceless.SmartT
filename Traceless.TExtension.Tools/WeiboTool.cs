@@ -22,7 +22,8 @@ namespace Traceless.TExtension.Tools
         {
             string topicUrl = "";
             HtmlWeb webClient = new HtmlWeb();
-            HtmlDocument doc = webClient.Load("https://s.weibo.com/apps/" + topicName+ "&pagetype=topic&topic=1&Refer=weibo_topic");
+            HtmlDocument doc = webClient.Load("https://s.weibo.com/weibo/" + topicName + "&Refer=weibo_weibo&xsort=time&realtimeweibo=1");
+            var ress = JavaScriptAnalyzer.Decode(doc.DocumentNode.InnerHtml);
             HtmlNodeCollection ContentList = doc.DocumentNode.SelectNodes("//a[@class='W_btn_b6']");
             var item = ContentList.FirstOrDefault();
             if (item == null) return null;
@@ -34,6 +35,31 @@ namespace Traceless.TExtension.Tools
 
             var ret = topicUrl.Substring(topicUrl.LastIndexOf(':')+1);
              return ret;
+        }
+
+        public static List<WeiBoContentItem> GetWeiBoTopicContentV2(string topicName, string targetName = "")
+        {
+            List<WeiBoContentItem> res = new List<WeiBoContentItem>();
+            HtmlWeb webClient = new HtmlWeb();
+            HtmlDocument doc = webClient.Load("https://s.weibo.com/weibo/" + topicName + "&Refer=weibo_weibo&xsort=time&realtimeweibo=1");
+            doc.DocumentNode.InnerHtml= JavaScriptAnalyzer.Decode(doc.DocumentNode.InnerHtml);
+            HtmlNodeCollection ContentList = doc.DocumentNode.SelectNodes("//div[@class='content clearfix']");
+            //获取一个话题项
+            ContentList.ToList().ForEach(p =>
+            {
+                var item = new WeiBoContentItem();
+                //获取时间
+                var timeItem = p.SelectNodes(".//a[@class='W_textb']");
+                item.Time = Convert.ToDateTime(timeItem.FirstOrDefault()?.InnerText);
+                var nickName = p.SelectNodes(".//a[@class='W_texta W_fb']");
+                item.Author = nickName.FirstOrDefault()?.InnerText.Trim();
+                var content = p.SelectNodes(".//p[@class='comment_txt']");
+                item.ContentStr = content.FirstOrDefault()?.InnerText.Trim();
+                var pic= p.SelectNodes(".//img[@action-type='feed_list_media_img']");
+                item.Pic ="https:"+ pic.FirstOrDefault()?.Attributes.FirstOrDefault(c => c.Name=="src")?.Value.Replace("thumbnail","large");
+                res.Add(item);
+            });
+            return res.Where(p => p.Author.Trim().Contains(targetName)).OrderByDescending(p => p.Time).ToList();
         }
 
         /// <summary>
@@ -88,11 +114,10 @@ namespace Traceless.TExtension.Tools
                 {
                     item.Time = Convert.ToDateTime(p.mblog.created_at);
                 }
-                item.TopicId = Convert.ToInt64(p.mblog.id);
 
                 theres.Add(item);
             });
-            return theres.Where(p=>p.Author.Trim().Contains(targetName)).OrderByDescending(p=>p.TopicId).ToList();
+            return theres.Where(p=>p.Author.Trim().Contains(targetName)).OrderByDescending(p=>p.Time).ToList();
         }
     }
 }
