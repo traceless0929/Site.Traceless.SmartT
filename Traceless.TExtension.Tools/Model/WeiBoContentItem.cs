@@ -245,7 +245,7 @@ namespace Traceless.TExtension.Tools.Model
 
         public class User
         {
-            public int id { get; set; }
+            public long id { get; set; }
             public string screen_name { get; set; }
             public string profile_image_url { get; set; }
             public string profile_url { get; set; }

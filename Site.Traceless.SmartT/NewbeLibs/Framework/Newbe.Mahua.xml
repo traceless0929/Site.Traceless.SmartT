@@ -537,6 +537,28 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Newbe.Mahua.IMahuaRobotManager">
+            <summary>
+            机器人实例管理器
+            </summary>
+        </member>
+        <member name="M:Newbe.Mahua.IMahuaRobotManager.CreateSession">
+            <summary>
+            创建会话
+            </summary>
+            <returns></returns>
+            <remarks>
+            多QQ机器人平台则返回第一个QQ
+            </remarks>
+        </member>
+        <member name="M:Newbe.Mahua.IMahuaRobotManager.CreateSession(System.String)">
+            <summary>
+            创建会话
+            </summary>
+            <param name="qq">指定的QQ机器人</param>
+            <returns></returns>
+            <exception cref="T:Newbe.Mahua.QqNotFoundException">指定的QQ不存在</exception>
+        </member>
         <member name="T:Newbe.Mahua.INotSupportedMahuaApiConvertion">
             <summary>
             调用不受支持的Api的行为
@@ -605,6 +627,11 @@
         <member name="P:Newbe.Mahua.IPluginInfo.Description">
             <summary>
             插件描述信息
+            </summary>
+        </member>
+        <member name="T:Newbe.Mahua.IRobotSession">
+            <summary>
+            机器人会话，开启操作QQ机器人的桥梁
             </summary>
         </member>
         <member name="T:Newbe.Mahua.MahuaApiExtensions">
@@ -1559,9 +1586,9 @@
             生命周期，详细见 Autofac相关文档，http://autofac.readthedocs.io/en/latest/lifetime/working-with-scopes.html
             </summary>
         </member>
-        <member name="F:Newbe.Mahua.MahuaGlobal.LifeTimeScopes.Command">
+        <member name="F:Newbe.Mahua.MahuaGlobal.LifeTimeScopes.RobotSession">
             <summary>
-            CommandCenter触发一次处理的范围
+            RobotSession生命周期的范围
             </summary>
         </member>
         <member name="P:Newbe.Mahua.MahuaMenu.Id">
@@ -1592,6 +1619,11 @@
         <member name="F:Newbe.Mahua.MahuaPlatform.Amanda">
             <summary>
             Amanda
+            </summary>
+        </member>
+        <member name="T:Newbe.Mahua.MahuaRobotManager">
+            <summary>
+            机器人实例管理器
             </summary>
         </member>
         <member name="M:Newbe.Mahua.MessageBuilderExtensions.SendPrivateMessage(Newbe.Mahua.IMahuaApi,System.String)">
