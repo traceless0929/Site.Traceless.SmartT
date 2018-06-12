@@ -14,8 +14,8 @@ namespace Traceless.TExtension.Tools.Tests
         [TestMethod()]
         public void GetWeiBoTopicIdTest()
         {
-            //WeiboTool.GetWeiBoTopicContent("剑网3江湖百晓生", "剑网3官方微博");
-            var res = WeiboTool.GetWeiBoTopicContentV1("100808caa7b601042a88d12fe2d284f3891665", "剑网3官方微博");
+            var res = WeiboTool.GetWeiBoTopicContentV1("剑网3江湖百晓生", "剑网3官方微博");
+            //var res = WeiboTool.GetWeiBoTopicContentV3("100808caa7b601042a88d12fe2d284f3891665", "剑网3官方微博");
             //var res = WeiboTool.GetWeiBoTopicContentV2("剑网3江湖百晓生", "剑网3官方微博");
             Assert.Fail();
         }
