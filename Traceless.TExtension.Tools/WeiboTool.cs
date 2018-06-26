@@ -129,7 +129,8 @@ namespace Traceless.TExtension.Tools
         /// <returns></returns>
         public static List<WeiBoContentItem> GetWeiBoTopicContentV1(string topicName, string targetName = "")
         {
-            var res = JavaScriptAnalyzer.Decode(ToolClass.GetAPI($"https://m.weibo.cn/api/container/getIndex?containerid=231522type%3D61%26q%3D%23{topicName}%23%26t%3D0&isnewpage=1&luicode=10000011&lfid=100103type%3D1%26q%3D{topicName}&featurecode=20000320"));
+            var encode = System.Web.HttpUtility.UrlEncode(topicName);
+            var res = JavaScriptAnalyzer.Decode(ToolClass.GetAPI($"https://m.weibo.cn/api/container/getIndex?type=all&queryVal={encode}&featurecode=20000320&luicode=10000011&lfid=106003type%3D1&title={encode}&containerid=100103type%3D61%26q%3D{encode}%26t%3D0"));
             var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<WeiBoTopicRes>(res);
             var card_Groups = new List<WeiBoTopicRes.Card_Group>();
             ret.data.cards.Where(p => p.card_group != null).Select(p => p).ToList().ForEach(
