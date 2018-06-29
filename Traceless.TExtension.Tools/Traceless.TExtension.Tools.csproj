@@ -55,13 +55,16 @@
     <Compile Include="CQCode.cs" />
     <Compile Include="CQImageTool.cs" />
     <Compile Include="Model\WeiBoContentItem.cs" />
+    <Compile Include="Model\WeiBoDirectContentItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringHelper.cs" />
     <Compile Include="ToolClass.cs" />
     <Compile Include="WeiboTool.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

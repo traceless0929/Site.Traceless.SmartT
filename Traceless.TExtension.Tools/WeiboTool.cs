@@ -121,6 +121,52 @@ namespace Traceless.TExtension.Tools
         }
 
 
+        public static List<WeiBoContentItem> GetWeiboByUid(string Uid,string ContainerId,string TopicFilter="")
+        {
+            var res = JavaScriptAnalyzer.Decode(ToolClass.GetAPI($"https://m.weibo.cn/api/container/getIndex?type=uid&value={Uid}&containerid={ContainerId}"));
+            var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<WeiBoDirectContentItem.WeiBoDirectRes>(res);
+            var card_Groups = ret.data.cards.ToList();
+            List<WeiBoContentItem> theres = new List<WeiBoContentItem>();
+            card_Groups.ForEach(p =>
+            {
+                HtmlDocument htmlDocument = new HtmlDocument();
+                htmlDocument.LoadHtml(p.mblog.text);
+                WeiBoContentItem item = new WeiBoContentItem
+                {
+                    Pic = p.mblog.original_pic,
+                    Author = p.mblog.user.screen_name,
+                    ContentStr = htmlDocument.DocumentNode?.InnerText
+                };
+                if (p.mblog.created_at.Contains("分钟"))
+                {
+                    var getNum = Convert.ToInt32(p.mblog.created_at.Replace("分钟前", ""));
+                    item.Time = DateTime.Now.AddMinutes(-getNum);
+                }
+                else if (p.mblog.created_at.Contains("小时"))
+                {
+                    var getNum = Convert.ToInt32(p.mblog.created_at.Replace("小时前", ""));
+                    item.Time = DateTime.Now.AddHours(-getNum);
+                }
+                else if (p.mblog.created_at.Contains("昨天"))
+                {
+                    var getNum = Convert.ToDateTime(p.mblog.created_at.Replace("昨天", "").Trim());
+                    item.Time = getNum.AddDays(-1);
+                }
+                else if (p.mblog.created_at.Contains("前天"))
+                {
+                    var getNum = Convert.ToDateTime(p.mblog.created_at.Replace("前天", "").Trim());
+                    item.Time = getNum.AddDays(-2);
+                }
+                else
+                {
+                    item.Time = Convert.ToDateTime(p.mblog.created_at);
+                }
+
+                theres.Add(item);
+            });
+            return theres.Where(p=>p.ContentStr.Contains(TopicFilter)).OrderByDescending(p => p.Time).ToList();
+        }
+
         /// <summary>
         /// 获取微博话题内容列表(使用微博话题api),此接口返回内容详细，非常好用
         /// </summary>
@@ -130,7 +176,7 @@ namespace Traceless.TExtension.Tools
         public static List<WeiBoContentItem> GetWeiBoTopicContentV1(string topicName, string targetName = "")
         {
             var encode = System.Web.HttpUtility.UrlEncode(topicName);
-            var res = JavaScriptAnalyzer.Decode(ToolClass.GetAPI($"https://m.weibo.cn/api/container/getIndex?type=all&queryVal={encode}&featurecode=20000320&luicode=10000011&lfid=106003type%3D1&title={encode}&containerid=100103type%3D61%26q%3D{encode}%26t%3D0"));
+            var res = JavaScriptAnalyzer.Decode(ToolClass.GetAPI($"https://m.weibo.cn/api/container/getIndex?type=uid&value=1761587065"));
             var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<WeiBoTopicRes>(res);
             var card_Groups = new List<WeiBoTopicRes.Card_Group>();
             ret.data.cards.Where(p => p.card_group != null).Select(p => p).ToList().ForEach(
