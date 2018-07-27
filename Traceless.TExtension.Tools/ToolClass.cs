@@ -141,6 +141,31 @@ namespace Traceless.TExtension.Tools
             return strResult;
         }
 
+
+        #region 去掉HTML中的所有标签,只留下纯文本
+        /// <summary>
+        /// 去掉HTML中的所有标签,只留下纯文本
+        /// </summary>
+        /// <param name="strHtml"></param>
+        /// <returns></returns>
+
+        public static string CleanHtml(string strHtml)
+        {
+            if (string.IsNullOrEmpty(strHtml)) return strHtml;
+            //删除脚本
+            //Regex.Replace(strHtml, @"<script[^>]*?>.*?</script>", "", RegexOptions.IgnoreCase)
+            strHtml = Regex.Replace(strHtml, "(<script(.+?)</script>)|(<style(.+?)<style>)", "", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            //删除标签
+            var r = new Regex(@"</?[^>]*>", RegexOptions.IgnoreCase);
+            Match m;
+            for (m = r.Match(strHtml); m.Success; m = m.NextMatch())
+            {
+                strHtml = strHtml.Replace(m.Groups[0].ToString(), "");
+            }
+            return strHtml.Trim();
+        }
+
+        #endregion
         private static readonly string DefaultUserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
 
         /// <summary>

@@ -120,10 +120,10 @@ namespace Traceless.TExtension.Tools
             return theres.Where(p=>p.Author.Trim().Contains(targetName)).OrderByDescending(p=>p.Time).ToList();
         }
 
-
         public static List<WeiBoContentItem> GetWeiboByUid(string Uid,string ContainerId,string TopicFilter="")
         {
-            var res = JavaScriptAnalyzer.Decode(ToolClass.GetAPI($"https://m.weibo.cn/api/container/getIndex?type=uid&value={Uid}&containerid={ContainerId}"));
+            var res = /*JavaScriptAnalyzer.Decode(*/
+                ToolClass.GetAPI($"https://m.weibo.cn/api/container/getIndex?type=uid&value={Uid}&containerid={ContainerId}")/*)*/;
             var ret = Newtonsoft.Json.JsonConvert.DeserializeObject<WeiBoDirectContentItem.WeiBoDirectRes>(res);
             var card_Groups = ret.data.cards.ToList();
             List<WeiBoContentItem> theres = new List<WeiBoContentItem>();
