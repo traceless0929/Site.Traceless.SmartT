@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Newbe.Mahua;
 using Newbe.Mahua.MahuaEvents;
 using Site.Traceless.SmartT.Func;
+using Traceless.TExtension.Tools;
+using Traceless.TExtension.Tools.Model;
 
 namespace Site.Traceless.SmartT.CorP
 {
@@ -36,6 +38,17 @@ namespace Site.Traceless.SmartT.CorP
                 {
                     _mahuaApi.SendPrivateMessage(nowModel.Who).Text($"{nowModel.How}").Newline().Text("[来自作者的反馈]").Done();
                     return;
+                }
+
+                if (nowModel.What == "设日常")
+                {
+                    Config.DefaltItem = new WeiBoContentItem
+                    {
+                        Author = "帅气的作者手动创建",
+                        Time = Convert.ToDateTime(nowModel.Who),
+                        ContentStr = nowModel.How,
+                        Pic = @"https://traceless.site/"
+                    };
                 }
             }
 

@@ -17,7 +17,7 @@ namespace Traceless.TExtension.Tools.Tests
             //var res = WeiboTool.GetWeiBoTopicContentV1("剑网3江湖百晓生", "剑网3官方微博");
             //var res = WeiboTool.GetWeiBoTopicContentV3("100808caa7b601042a88d12fe2d284f3891665", "剑网3官方微博");
             //var res = WeiboTool.GetWeiBoTopicContentV2("剑网3江湖百晓生", "剑网3官方微博");
-            var res = WeiboTool.GetWeiboByUid("1761587065","1076031761587065","#剑网3江湖百晓生#");
+            var res = WeiboTool.GetWeiboByUid("1761587065", "1076031761587065", "#剑网3江湖百晓生#");
             Assert.Fail();
         }
     }
