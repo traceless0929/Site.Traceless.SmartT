@@ -40,7 +40,7 @@ namespace Site.Traceless.SmartT.CorP
                     {
                         if (Config.DefaltItem != null)
                         {
-                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text("[日常]来自 " + Config.DefaltItem.Author + "：").Newline().Text(Config.DefaltItem.ContentStr).Newline().Text(@"本信息由官博偷懒没发日常倾情触发").Done();
+                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text("[日常]QAQ官微又偷懒了，为您提供"+ Config.DefaltItem .Time.ToShortDateString()+ " 来自 " + Config.DefaltItem.Author + "：").Newline().Text(Config.DefaltItem.ContentStr).Newline().Text(@"本信息由官博偷懒没发日常倾情触发，更新请通过建议提交日常信息给我~").Done();
                         }
                         else
                         {
