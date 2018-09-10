@@ -31,6 +31,11 @@ namespace Site.Traceless.SmartT.Func
             get => _msg.OrderCount;
         }
 
+        public string OriginStr
+        {
+            get;set;
+        }
+
         /// <summary>
         /// 解析消息结构
         /// </summary>
@@ -46,6 +51,8 @@ namespace Site.Traceless.SmartT.Func
             {
                 _msg = new OrderInfoModel("");
             }
+
+            OriginStr = msg;
         }
 
         ~AnalysisMsg()

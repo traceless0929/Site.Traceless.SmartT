@@ -12,12 +12,14 @@ namespace TModel
         public string What { get; private set; } = "";
         public string Who { get; private set; } = "";
         public string How { get; private set; } = "";
+        public string OriginStr { get; private set; }
 
         public OrderInfoModel(string msg)
         {
             if (string.IsNullOrEmpty(msg)) return;
             try
             {
+                OriginStr = msg;
                 string[] temp = msg.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 if (temp.Length == 0)
                 {
