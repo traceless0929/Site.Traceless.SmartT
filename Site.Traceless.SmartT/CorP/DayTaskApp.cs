@@ -36,25 +36,20 @@ namespace Site.Traceless.SmartT.CorP
                     else
                         item = WeiboTool.GetWeiboByUid("1761587065", "1076031761587065", "#剑网3江湖百晓生#").OrderByDescending(p => p.Time).FirstOrDefault();//WeiboTool.GetWeiBoTopicContentV1("剑网3江湖百晓生", "剑网3官方微博").OrderByDescending(p => p.Time).FirstOrDefault();
 
+                    if (nowModel.Who == "文"&& item != null)
+                        _mahuaApi.SendGroupMessage(msg.FromGroup).Text("[日常]来自 " + item.Author + "：").Newline().Text(item.ContentStr).Newline().Text(@"本信息由新浪微博-剑网3江湖百晓生-超话提供").Done();
+                    else if(item != null)
+                        _mahuaApi.SendGroupMessage(msg.FromGroup).Text(CQCode.SendLink("查日常-" + item.Time.ToShortDateString(), item.Pic, item.ContentStr.Replace("#剑网3江湖百晓生#", "").Trim(), item.Pic)).Done();
                     if (item == null)
                     {
                         if (Config.DefaltItem != null)
                         {
-                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text("[日常]QAQ官微又偷懒了，为您提供"+ Config.DefaltItem .Time.ToShortDateString()+ " 来自 " + Config.DefaltItem.Author + "：").Newline().Text(Config.DefaltItem.ContentStr).Newline().Text(@"本信息由官博偷懒没发日常倾情触发，更新请通过建议提交日常信息给我~").Done();
+                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text("[日常]QAQ官微又偷懒了，为您提供" + Config.DefaltItem.Time.ToShortDateString() + " 来自 " + Config.DefaltItem.Author + "：").Newline().Text(Config.DefaltItem.ContentStr).Newline().Text(@"本信息由官博偷懒没发日常倾情触发，更新请通过建议提交日常信息给我~").Done();
                         }
                         else
                         {
                             _mahuaApi.SendGroupMessage(msg.FromGroup, "[日常]QAQ查询失败，请联系管理员");
                         }
-                    }
-                        
-                    else
-                    {
-                        lastestItem = item;
-                        if (nowModel.Who=="文")
-                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text("[日常]来自 " + item.Author + "：").Newline().Text(item.ContentStr).Newline().Text(@"本信息由新浪微博-剑网3江湖百晓生-超话提供").Done();
-                        else
-                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text(CQCode.SendLink("查日常-"+item.Time.ToShortDateString(), item.Pic,item.ContentStr.Replace("#剑网3江湖百晓生#","").Trim(),item.Pic)).Done();
                     }
                 }
             }
