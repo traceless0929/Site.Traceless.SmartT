@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using AutoMapper;
 using Newbe.Mahua;
+using Newbe.Mahua.Apis;
 using Newbe.Mahua.MahuaEvents;
 using Site.Traceless.SmartT.Func;
 using Site.Traceless.SmartT.MahuaEvents;
