@@ -122,6 +122,7 @@ Task Build -depends Nuget -Description "编译" {
 function WriteCqpJsonFile ($targetFilePath) {
     # 加载所有的DLL
     Get-ChildItem  "$releaseBase\$configuration\*" *.dll | ForEach-Object {
+	Write-Output "$releaseBase\$configuration\*"
         [void][reflection.assembly]::LoadFile($_)
     }
 
