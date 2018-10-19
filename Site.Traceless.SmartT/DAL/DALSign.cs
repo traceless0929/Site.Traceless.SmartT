@@ -14,7 +14,7 @@ namespace Site.Traceless.SmartT.DAL
     {
         public TSign GetSign(string pid)
         {
-            using (var db = new MySqlConnection("Server=47.98.242.55;Database=SmartTestSql;Uid=root;Pwd=XieBin741236;"))
+            using (var db = new MySqlConnection(""))
             {
                 var res = db.QueryFirstOrDefault<TSign>("select * from T_Config where pid=@pid",new {pid});
                 return res;
@@ -23,7 +23,7 @@ namespace Site.Traceless.SmartT.DAL
 
         public void SetSign(string pid,string gid)
         {
-            using (var db = new MySqlConnection("Server=47.98.242.55;Database=SmartTestSql;Uid=root;Pwd=XieBin741236;"))
+            using (var db = new MySqlConnection(""))
             {
                 var res = db.QueryFirstOrDefault<TSign>("select * from T_Config where pid=@pid", new { pid });
                 if (res == null)
