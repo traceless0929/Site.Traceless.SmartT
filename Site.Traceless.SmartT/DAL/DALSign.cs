@@ -1,12 +1,10 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
-using Dapper.Contrib;
-using Dapper.Contrib.Extensions;
+using LinqToDB;
 
 namespace Site.Traceless.SmartT.DAL
 {
@@ -14,32 +12,35 @@ namespace Site.Traceless.SmartT.DAL
     {
         public TSign GetSign(string pid)
         {
-            using (var db = new MySqlConnection("Server=47.98.242.55;Database=SmartTestSql;Uid=root;Pwd=XieBin741236;"))
+            using (var db = new SmartTSqlDB())
             {
-                var res = db.QueryFirstOrDefault<TSign>("select * from T_Config where pid=@pid",new {pid});
+                var res = db.TSigns.FirstOrDefault(p => p.Pid==pid);
                 return res;
             }
         }
 
         public void SetSign(string pid,string gid)
         {
-            using (var db = new MySqlConnection("Server=47.98.242.55;Database=SmartTestSql;Uid=root;Pwd=XieBin741236;"))
+            using (var db = new SmartTSqlDB())
             {
-                var res = db.QueryFirstOrDefault<TSign>("select * from T_Config where pid=@pid", new { pid });
+                var res = db.TSigns.FirstOrDefault(p => p.Pid == pid);
                 if (res == null)
                 {
-                    res = new TSign
-                    {
-                        Gid = gid,
-                        LastSign = DateTime.Now,
-                        Pid = pid,
-                        SignGid = gid,
-                    };
-                    db.Insert<TSign>(res);
+                    db.TSigns
+                        .Value(p => p.Gid, gid)
+                        .Value(p => p.Pid, pid)
+                        .Value(p => p.SignGid, gid)
+                        .Value(p => p.LastSign, DateTime.Now)
+                        .Insert();
                 }
                 else
                 {
-                    db.Update(res);
+                    db.TSigns
+                        .Where(p => p.Id == res.Id)
+                        .Set(p => p.Pid, pid)
+                        .Set(p => p.SignGid, gid)
+                        .Set(p => p.LastSign, DateTime.Now)
+                        .Update();
                 }
             }
         }

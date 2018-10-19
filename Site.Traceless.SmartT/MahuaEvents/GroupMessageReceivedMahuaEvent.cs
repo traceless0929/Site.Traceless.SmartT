@@ -25,8 +25,7 @@ namespace Site.Traceless.SmartT.MahuaEvents
             _serverRemind = serverRemind;
 
             _OverApp = new OverApp(mahuaApi);
-            _ChoseApp = new ChoseApp(mahuaApi, _OverApp);
-            _DayTaskApp = new DayTaskApp(_mahuaApi, _ChoseApp);
+            _DayTaskApp = new DayTaskApp(_mahuaApi, _OverApp);
             _AdviseApp = new AdviseApp(mahuaApi, _DayTaskApp);
             _PetCdApp = new PetCdApp(mahuaApi, _AdviseApp);
             _SerOpenApp = new SerOpenApp(mahuaApi, serverRemind, _PetCdApp);
@@ -41,7 +40,6 @@ namespace Site.Traceless.SmartT.MahuaEvents
         private SerOpenApp _SerOpenApp;
         private AdviseApp _AdviseApp;
         private DayTaskApp _DayTaskApp;
-        private ChoseApp _ChoseApp;
 
         public bool IsDebug = false;
         public string DebugGid = "516141713";

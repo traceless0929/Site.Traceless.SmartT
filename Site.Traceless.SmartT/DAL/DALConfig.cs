@@ -1,13 +1,10 @@
-﻿using MySql.Data.MySqlClient;
-using Dapper;
-using Dapper.Contrib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataModel;
 using TModel;
-using Dapper.Contrib.Extensions;
 
 namespace Site.Traceless.SmartT.DAL
 {
@@ -16,14 +13,14 @@ namespace Site.Traceless.SmartT.DAL
         public ConfigModel GetConfig()
         {
             ConfigModel ret = new ConfigModel();
-            using (var db = new MySqlConnection(""))
+            using (var db = new SmartTSqlDB())
             {
-                var res = db.GetAll<TConfig>().ToList();
+                var res = db.TConfigs.ToList();
                 ret.Name = GetConfigStr(res, "TName");
                 ret.MenuStr= GetConfigStr(res, "MenuStr");
                 ret.PrivateMenuStr= GetConfigStr(res, "PMenuStr");
                 ret.MasterQQ = GetConfigStr(res, "MasterQQ");
-                var funcs = db.Query<TFuncConfig>("select * from T_FuncConfig").ToList();
+                var funcs = db.TFuncconfigs.ToList();
                 funcs.ForEach(p =>
                 {
                     ret.FunList.Add(MapperUtil.Map<FuncItem>(p));

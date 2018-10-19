@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Site.Traceless.SmartT.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +21,7 @@ namespace Site.Traceless.SmartT
             {
 
                 cfg.CreateMissingTypeMaps = true;
-                cfg.CreateMap<TModel.FuncItem,TConfig>();
+                cfg.CreateMap<TModel.FuncItem, DataModel.TConfig>();
             });
 
             MapperUtil.Config(config.CreateMapper());
