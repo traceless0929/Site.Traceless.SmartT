@@ -122,6 +122,7 @@ Task Build -depends Nuget -Description "编译" {
 function WriteCqpJsonFile ($targetFilePath) {
     # 加载所有的DLL
     Get-ChildItem  "$releaseBase\$configuration\*" *.dll | ForEach-Object {
+         Write-Output "$releaseBase\$configuration\$_"
         [void][reflection.assembly]::LoadFile($_)
     }
 
@@ -165,7 +166,7 @@ Task PackCQP -depends DonwloadPackages, Build -Description "CQP打包" {
             Copy-FrameworkExtensionItems -dest "$releaseBase\CQP\$pluginName"
             Copy-Item -Path "$releaseBase\$configuration\*", "$toolBase\NewbeLibs\Platform\CLR\*"   -Destination "$releaseBase\CQP\$pluginName" -Recurse
             Copy-Item -Path "$toolBase\NewbeLibs\Platform\Native\Newbe.Mahua.CQP.Native.dll" -Destination  "$releaseBase\CQP\app\$pluginName.dll"
-            WriteCqpJsonFile -targetFilePath "$releaseBase\CQP\app\$pluginName.json"
+            #WriteCqpJsonFile -targetFilePath "$releaseBase\CQP\app\$pluginName.json"
 
             Copy-Item "$releaseBase\CQP\$pluginName" "$releaseBase\CQP\$assetDirName\$pluginName" -Recurse
             Get-ChildItem "$releaseBase\CQP\$assetDirName\$pluginName" | Get-FileHash | Out-File "$releaseBase\hash.txt"
