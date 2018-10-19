@@ -2,7 +2,7 @@
 properties {
     $rootNow = Resolve-Path .
     $nugetexe = "$rootNow\buildTools\NuGet.exe"
-    $configuration = "release"
+    $configuration = "debug"
     $releaseBase = "$rootNow\bin"
     $pluginName = (Get-ChildItem *.csproj).Name.Replace(".csproj", "")
     $mahuaDownloadTempDir = "$($env:TEMP)\Newbe\Newbe.Mahua"

@@ -129,6 +129,7 @@
     <Compile Include="Func\Jx3ToolClass.cs" />
     <Compile Include="MahuaEvents\ExceptionOccuredMahuaEvent.cs" />
     <Compile Include="MahuaEvents\GroupMessageReceivedMahuaEvent.cs" />
+    <Compile Include="MahuaEvents\InitializationMahuaEvent.cs" />
     <Compile Include="MahuaEvents\PluginEnabledMahuaEvent.cs" />
     <Compile Include="MahuaEvents\PrivateMessageFromFriendReceivedMahuaEvent.cs" />
     <Compile Include="MahuaModule.cs" />

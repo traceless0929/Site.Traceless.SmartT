@@ -58,6 +58,8 @@ namespace Site.Traceless.SmartT
                 builder.RegisterType<GroupMessageReceivedMahuaEvent>().As<IGroupMessageReceivedMahuaEvent>();
                 builder.RegisterType<PrivateMessageFromFriendReceivedMahuaEvent>().As<IPrivateMessageFromFriendReceivedMahuaEvent>();
                 builder.RegisterType<ExceptionOccuredMahuaEvent>().As<IExceptionOccuredMahuaEvent>();
+                builder.RegisterType<InitializationMahuaEvent>().As<IInitializationMahuaEvent>();
+                
 
             }
         }
