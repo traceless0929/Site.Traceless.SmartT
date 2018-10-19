@@ -16,7 +16,7 @@ namespace Site.Traceless.SmartT.DAL
         public ConfigModel GetConfig()
         {
             ConfigModel ret = new ConfigModel();
-            using (var db = new MySqlConnection("Server=47.98.242.55;Database=SmartTestSql;Uid=root;Pwd=XieBin741236;"))
+            using (var db = new MySqlConnection(""))
             {
                 var res = db.GetAll<TConfig>().ToList();
                 ret.Name = GetConfigStr(res, "TName");
