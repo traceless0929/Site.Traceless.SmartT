@@ -31,6 +31,12 @@ namespace Traceless.TExtension.Tools
             return r;
         }
 
+        public static string[] GetIni(string path)
+        {
+            if (!File.Exists(path)) return null;
+            Encoding encoding = Encoding.GetEncoding("GB2312");
+            return File.ReadAllLines(path, encoding);
+        }
         /// <summary>
         /// 随机产生结果(万分之CEN)
         /// </summary>
