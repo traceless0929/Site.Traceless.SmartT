@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="CQImageToolTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolClassTests.cs" />
     <Compile Include="WeiboToolTests.cs" />
   </ItemGroup>
   <ItemGroup>
