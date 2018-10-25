@@ -52,46 +52,6 @@ namespace Site.Traceless.SmartT.CorP
                     {
                         successor.ProcessRequset(msg, nowModel);
                     }
-                    //var ident = _mahuaApi.GetGroupMemberInfo(msg.FromGroup, msg.FromQq);
-                    //if (ident.Authority == GroupMemberAuthority.Leader || ident.Authority == GroupMemberAuthority.Manager || msg.FromQq == Config.ConfigModel.MasterQQ)
-                    //{
-                    //    try
-                    //    {
-                    //        var data = ToolClass.GetIni(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                    //            $"{msg.FromGroup}.ini"));
-                    //        if (data == null)
-                    //        {
-                    //            _mahuaApi.SendGroupMessage(msg.FromGroup).At(msg.FromQq)
-                    //                .Text($"群成员未导入，请联系管理员").Done();
-                    //        }
-                    //        else
-                    //        {
-                    //            var allMember = data.ToList();
-                    //            _mahuaApi.SendGroupMessage(msg.FromGroup).At(msg.FromQq)
-                    //                .Text($"开始从{allMember.Count()}人中抽取幸运锦鲤!").Done();
-                    //            System.Threading.Thread.Sleep(1000);
-                    //            _mahuaApi.SendGroupMessage(msg.FromGroup).Text($"5.....").Done();
-                    //            System.Threading.Thread.Sleep(1000);
-                    //            _mahuaApi.SendGroupMessage(msg.FromGroup).Text($"4....").Done();
-                    //            System.Threading.Thread.Sleep(1000);
-                    //            _mahuaApi.SendGroupMessage(msg.FromGroup).Text($"3...").Done();
-                    //            System.Threading.Thread.Sleep(1000);
-                    //            _mahuaApi.SendGroupMessage(msg.FromGroup).Text($"2..").Done();
-                    //            System.Threading.Thread.Sleep(1000);
-                    //            _mahuaApi.SendGroupMessage(msg.FromGroup).Text($"1.").Done();
-                    //            System.Threading.Thread.Sleep(1000);
-                    //            _mahuaApi.SendGroupMessage(msg.FromGroup).Text($"Boom!本次的锦鲤为！").Newline()
-                    //                .At(allMember[ToolClass.RandomGet(0, allMember.Count())]).Newline()
-                    //                .Text("围殴他ヽ(●-`Д´-)ノ！").Done();
-                    //        }
-                            
-                    //    }
-                    //    catch (Exception ex)
-                    //    {
-                    //        successor.ProcessRequset(msg, nowModel);
-                    //    }
-                        
-                    //}
 
                 }
             }
