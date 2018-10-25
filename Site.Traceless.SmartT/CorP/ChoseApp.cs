@@ -37,11 +37,12 @@ namespace Site.Traceless.SmartT.CorP
                         else
                         {
                             var allMember = data.ToList();
-                            var orderid = Guid.NewGuid().ToString("N").Substring(5);
+                            var str = nowModel.Who;
+                            var orderid = Guid.NewGuid().ToString("N").Substring(0,5);
                             _mahuaApi.SendGroupMessage(msg.FromGroup).At(msg.FromQq)
-                                .Text($"5S后,开始从{allMember.Count()}人中抽取幸运锦鲤{nowModel.Who}!").Newline().Text($"锦鲤编号:{orderid}").Done();
+                                .Text($"5S后,开始从{allMember.Count()}人中抽取幸运锦鲤{str}!").Newline().Text($"锦鲤编号:{orderid}").Done();
                             System.Threading.Thread.Sleep(5000);
-                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text($"Boom!{orderid}号{nowModel.Who}的锦鲤为！").Newline()
+                            _mahuaApi.SendGroupMessage(msg.FromGroup).Text($"Boom!{orderid}号{str}的锦鲤为！").Newline()
                                 .At(allMember[ToolClass.RandomGet(0, allMember.Count())]).Newline()
                                 .Text("围殴他ヽ(●-`Д´-)ノ！").Done();
                         }
