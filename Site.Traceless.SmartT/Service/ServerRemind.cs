@@ -38,27 +38,24 @@ namespace Site.Traceless.SmartT.Service
 
         
 
-        public void GoServerQuery(string clu, string str)
+        public void GoServerQuery(string clu, string serverstr)
         {
-            bool flag = false;
-            string text = str.Trim();
+            string serName = serverstr.Trim();
             string ip = string.Empty;
-            string str2 = string.Empty;
+            string bigSer = string.Empty;
             for (int i = 0; i < Config.serList.GetLength(0); i++)
             {
-                bool flag2 = text.Equals(Config.serList[i, 1]);
-                if (flag2)
+                if (serName.Equals(Config.serList[i, 1]))
                 {
                     ip = Config.serList[i, 2];
-                    str2 = Config.serList[i, 0];
-                    string content = Jx3OpenTell.IsOpen(ip, 3724) ? (str2 + " " + text + "\r\n开") : (str2 + " " + text + "\r\n关");
+                    bigSer = Config.serList[i, 0];
+                    string content = Jx3OpenTell.IsOpen(ip, 3724) ? (bigSer + " " + serName + "\r\n开") : (bigSer + " " + serName + "\r\n关");
                     _mahuaApi.SendGroupMessage(clu, CQCode.SendLink("开服查询", CQCode.GetQQHead(_mahuaApi.GetLoginQq()), content));
-                    flag = true;
+                    return;
                 }
                 else
                 {
-                    bool flag3 = !flag && i == Config.serList.GetLength(0) - 1;
-                    if (flag3)
+                    if (i == Config.serList.GetLength(0) - 1)
                     {
                         _mahuaApi.SendGroupMessage(clu, " 对不起，没有找到服务器 (づ╥﹏╥)づ");
                     }
@@ -66,10 +63,9 @@ namespace Site.Traceless.SmartT.Service
             }
         }
 
-        public void GoServerRemind(string clu, string str)
+        public void GoServerRemind(string clu, string serverstr)
         {
-            bool flag = false;
-            string serName = str.Trim();
+            string serName = serverstr.Trim();
             string bigSer = string.Empty;
             for (int i = 0; i < Config.serList.GetLength(0); i++)
             {
@@ -78,7 +74,6 @@ namespace Site.Traceless.SmartT.Service
                     bool existflag = false;
                     bigSer = Config.serList[i, 0];
                     Config.serList[i, 3] = "1";
-                    Config.serList[i, 4] += "|" + clu;
                     string[] cluList = Config.serList[i, 4].Split('|');
                     foreach (var istr in cluList)
                     {
@@ -88,12 +83,11 @@ namespace Site.Traceless.SmartT.Service
                     {
                         Config.serList[i, 4] += "|" + clu;
                     }
-                    _mahuaApi.SendGroupMessage(clu, CQCode.SendLink("开服监控", CQCode.GetQQHead(_mahuaApi.GetLoginQq()), "已为您开启 " + str + "的监控~请关注群信息，将第一时间通知到群。"));
+                    _mahuaApi.SendGroupMessage(clu, CQCode.SendLink("开服监控", CQCode.GetQQHead(_mahuaApi.GetLoginQq()), "已为您开启 " + serName + "的监控~请关注群信息，将第一时间通知到群。"));
                     timer.Enabled = true;
-                    flag = true;
-                    continue;
+                    return;
                 }
-                else if (!flag && i == Config.serList.GetLength(0) - 1)
+                else if (i == Config.serList.GetLength(0) - 1)
                 {
                     _mahuaApi.SendGroupMessage(clu, " 对不起，没有找到服务器 (づ╥﹏╥)づ \n监控开启失败");
                 }
@@ -114,16 +108,12 @@ namespace Site.Traceless.SmartT.Service
                         '|'
                     });
                     string text = string.Empty;
-                    string str = Config.serList[i, 0];
-                    string str2 = Config.serList[i, 1];
-                    bool flag2 = !Jx3OpenTell.IsOpen(ip, 3724);
-                    if (!flag2)
+                    string bigSer = Config.serList[i, 0];
+                    string serName = Config.serList[i, 1];
+                    if (Jx3OpenTell.IsOpen(ip, 3724))
                     {
-                        text = CQCode.SendLink("开服监控", CQCode.GetQQHead(_mahuaApi.GetLoginQq()), str + " " + str2 + " 开服了！");
-                        for (int j = 1; j < array.Length; j++)
-                        {
-                            _mahuaApi.SendGroupMessage(array[j], text);
-                        }
+                        text = CQCode.SendLink("开服监控", CQCode.GetQQHead(_mahuaApi.GetLoginQq()), bigSer + " " + serName + " 开服了！");
+                        array.Where(p=>p!="List").ToList().ForEach(p => { _mahuaApi.SendGroupMessage(p, text); });
                         Config.serList[i, 3] = "0";
                         Config.serList[i, 4] = "List";
                     }
