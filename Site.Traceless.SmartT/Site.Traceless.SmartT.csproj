@@ -113,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="CorP\RollApp.cs" />
     <Compile Include="CorP\ChoseApp.cs" />
     <Compile Include="CorP\Approver.cs" />
     <Compile Include="CorP\AdviseApp.cs" />
