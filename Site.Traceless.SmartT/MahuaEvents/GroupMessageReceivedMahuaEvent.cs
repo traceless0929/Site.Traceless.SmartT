@@ -25,7 +25,8 @@ namespace Site.Traceless.SmartT.MahuaEvents
             _serverRemind = serverRemind;
 
             _OverApp = new OverApp(mahuaApi);
-            _ChoseApp = new ChoseApp(_mahuaApi, _OverApp);
+            _RollApp = new RollApp(_mahuaApi, _OverApp);
+            _ChoseApp = new ChoseApp(_mahuaApi, _RollApp);
             _DayTaskApp = new DayTaskApp(_mahuaApi, _ChoseApp);
             _AdviseApp = new AdviseApp(mahuaApi, _DayTaskApp);
             _PetCdApp = new PetCdApp(mahuaApi, _AdviseApp);
@@ -35,6 +36,7 @@ namespace Site.Traceless.SmartT.MahuaEvents
         }
 
         private MenuApp _MenuApp;
+        private RollApp _RollApp;
         private SignApp _SignApp;
         private OverApp _OverApp;
         private PetCdApp _PetCdApp;
