@@ -39,6 +39,11 @@ namespace TModel
         {
             return FunList.Count(p => p.FuncName == funcName&&p.IsOpen==true)>0?true:false;
         }
+
+        /// <summary>
+        /// 开启卡片
+        /// </summary>
+        public bool UseCard = System.Configuration.ConfigurationManager.AppSettings["USECARD"].ToString().Equals("1");
     }
 
     public class FuncItem

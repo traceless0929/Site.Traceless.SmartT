@@ -8,6 +8,7 @@ namespace Traceless.TExtension.Tools
 {
     public class CQCode
     {
+        static bool UseCard = System.Configuration.ConfigurationManager.AppSettings["USECARD"].ToString().Equals("1");
         /// <summary>
         /// 发送猜拳魔法表情
         /// </summary>
@@ -74,7 +75,14 @@ namespace Traceless.TExtension.Tools
         /// <returns></returns>
         public static string SendLink(string title, string image = "", string content = "", string url = "http://traceless.site/")
         {
-            return $"[CQ:share,url={url},title={title},content={content},image={image}]";
+            if (UseCard)
+            {
+                return $"[CQ:share,url={url},title={title},content={content},image={image}]";
+            }
+
+            return $"{title}-{content}";
+
+
         }
 
         /// <summary>
