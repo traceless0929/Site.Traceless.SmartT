@@ -80,7 +80,7 @@ namespace Traceless.TExtension.Tools
                 return $"[CQ:share,url={url},title={title},content={content},image={image}]";
             }
 
-            return $"{title}-{content}";
+            return $"{title}-{content}\r\n[{url}]";
 
 
         }
