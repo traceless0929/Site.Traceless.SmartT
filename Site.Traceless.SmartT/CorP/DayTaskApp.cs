@@ -38,7 +38,7 @@ namespace Site.Traceless.SmartT.CorP
 
                     if (nowModel.OriginStr.Contains("文") && item != null)
                     {
-                        _mahuaApi.SendGroupMessage(msg.FromGroup).Text("[日常]来自 " + item.Author + "：").Newline().Text(item.ContentStr).Newline().Text(@"本信息由新浪微博-剑网3江湖百晓生-超话提供").Done();
+                        _mahuaApi.SendGroupMessage(msg.FromGroup).Text("[日常]来自 " + item.Author + "：").Newline().Text(item.ContentStr).Newline().Text($"图片-{item.Pic}").Newline().Text(@"本信息由新浪微博-剑网3江湖百晓生-超话提供").Done();
                     }
                     else if (item != null)
                     {
