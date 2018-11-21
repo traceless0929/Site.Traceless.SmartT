@@ -36,10 +36,22 @@ namespace Site.Traceless.SmartT.CorP
                     else
                         item = WeiboTool.GetWeiboByUid("1761587065", "1076031761587065", "#剑网3江湖百晓生#").OrderByDescending(p => p.Time).FirstOrDefault();//WeiboTool.GetWeiBoTopicContentV1("剑网3江湖百晓生", "剑网3官方微博").OrderByDescending(p => p.Time).FirstOrDefault();
 
-                    if (nowModel.OriginStr.Contains("文")&& item != null)
+                    if (nowModel.OriginStr.Contains("文") && item != null)
+                    {
                         _mahuaApi.SendGroupMessage(msg.FromGroup).Text("[日常]来自 " + item.Author + "：").Newline().Text(item.ContentStr).Newline().Text(@"本信息由新浪微博-剑网3江湖百晓生-超话提供").Done();
-                    else if(item != null)
+                        if (!Config.ConfigModel.UseCard)
+                        {
+                            _mahuaApi.SendGroupMessage(msg.FromGroup).Image(item.Pic).Done();
+                        }
+                    }
+                    else if (item != null)
+                    {
                         _mahuaApi.SendGroupMessage(msg.FromGroup).Text(CQCode.SendLink("查日常-" + item.Time.ToShortDateString(), item.Pic, item.ContentStr.Replace("#剑网3江湖百晓生#", "").Trim(), item.Pic)).Done();
+                        if (!Config.ConfigModel.UseCard)
+                        {
+                            _mahuaApi.SendGroupMessage(msg.FromGroup).Image(item.Pic).Done();
+                        }
+                    }
                     if (item == null)
                     {
                         if (Config.DefaltItem != null)
