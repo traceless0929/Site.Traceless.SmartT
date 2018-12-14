@@ -22,7 +22,8 @@ bld/
 [Oo]bj/
 [Ll]og/
 # database
-DBModel/
+DBModel/app.config
+DBModel/DBModel/TDatabase.tt
 Traceless.Api/Linq2DBSettings.cs
 Site.Traceless.SmartT/app.config
 # Visual Studio 2015 cache/options directory
