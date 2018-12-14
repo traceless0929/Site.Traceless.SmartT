@@ -47,7 +47,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="linq2db, Version=2.0.0.0, Culture=neutral, PublicKeyToken=e41013125f9e410a, processorArchitecture=MSIL">
-      <HintPath>..\packages\linq2db.2.0.0-beta4\lib\net45\linq2db.dll</HintPath>
+      <HintPath>..\packages\linq2db.2.0.0\lib\net45\linq2db.dll</HintPath>
     </Reference>
     <Reference Include="MediatR, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MediatR.3.0.1\lib\net45\MediatR.dll</HintPath>
@@ -61,14 +61,14 @@
     <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
-    <Reference Include="Newbe.Mahua, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newbe.Mahua.1.12.0\lib\net452\Newbe.Mahua.dll</HintPath>
+    <Reference Include="Newbe.Mahua, Version=1.13.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newbe.Mahua.1.13.1\lib\net452\Newbe.Mahua.dll</HintPath>
     </Reference>
-    <Reference Include="Newbe.Mahua.CQP.ApiExtensions, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newbe.Mahua.CQP.ApiExtensions.1.12.0\lib\net452\Newbe.Mahua.CQP.ApiExtensions.dll</HintPath>
+    <Reference Include="Newbe.Mahua.CQP.ApiExtensions, Version=1.13.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newbe.Mahua.CQP.ApiExtensions.1.13.1\lib\net452\Newbe.Mahua.CQP.ApiExtensions.dll</HintPath>
     </Reference>
-    <Reference Include="Newbe.Mahua.PluginLoader, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newbe.Mahua.PluginLoader.1.12.0\lib\net452\Newbe.Mahua.PluginLoader.dll</HintPath>
+    <Reference Include="Newbe.Mahua.PluginLoader, Version=1.13.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newbe.Mahua.PluginLoader.1.13.1\lib\net452\Newbe.Mahua.PluginLoader.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
