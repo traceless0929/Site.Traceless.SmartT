@@ -3,6 +3,7 @@ using Newbe.Mahua.MahuaEvents;
 using Site.Traceless.SmartT.CorP;
 using Site.Traceless.SmartT.Func;
 using System;
+using Traceless.TExtension.Tools;
 
 namespace Site.Traceless.SmartT.MahuaEvents
 {

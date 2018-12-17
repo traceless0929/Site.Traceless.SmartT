@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newbe.Mahua.MahuaEvents;
-using Site.Traceless.SmartT.Func;
+using Traceless.TExtension.Tools;
 
 namespace Site.Traceless.SmartT.CorP
 {

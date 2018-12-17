@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TModel;
+using Traceless.TExtension.Tools.Model;
 
-namespace Site.Traceless.SmartT.Func
+namespace Traceless.TExtension.Tools
 {
     public class AnalysisMsg
     {
@@ -33,7 +33,7 @@ namespace Site.Traceless.SmartT.Func
 
         public string OriginStr
         {
-            get;set;
+            get; set;
         }
 
         /// <summary>

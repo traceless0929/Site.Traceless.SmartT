@@ -53,8 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalysisMsg.cs" />
     <Compile Include="CQCode.cs" />
     <Compile Include="CQImageTool.cs" />
+    <Compile Include="Model\OrderInfoModel.cs" />
     <Compile Include="Model\WeiBoContentItem.cs" />
     <Compile Include="Model\WeiBoDirectContentItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
