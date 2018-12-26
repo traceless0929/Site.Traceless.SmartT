@@ -247,6 +247,18 @@ namespace Traceless.TExtension.Tools
             return strValue;
         }
 
+
+        /// <summary>
+        /// 下载网页图片
+        /// </summary>
+        /// <param name="url">下载路径</param>
+        /// <param name="desPath">目标路径</param>
+        /// <returns></returns>
+        public static void DownLoadImage(string url, string desPath)
+        {
+            WebClient mywebclient = new WebClient();
+            mywebclient.DownloadFile(url, desPath);
+        }
         /// <summary>
         /// 得到本周第一天(以星期一为第一天)
         /// </summary>

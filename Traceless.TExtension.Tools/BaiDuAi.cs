@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace Traceless.TExtension.Tools
 {
     public class BaiDuAi
     {
-        string _APP_ID = "";
-        string _API_KEY = "";
-        string _SECRET_KEY = "";
+        string _APP_ID = ConfigurationManager.AppSettings["BaiDu_APP_ID"].ToString();
+        string _API_KEY = ConfigurationManager.AppSettings["BaiDu_API_KEY"].ToString();
+        string _SECRET_KEY = ConfigurationManager.AppSettings["BaiDu_SECRET_KEY"].ToString();
+        string _TemplateSign_= ConfigurationManager.AppSettings["BaiDu_TASKDAY_TID"].ToString();
 
         Baidu.Aip.Ocr.Ocr _ocRclient = null;
         public Baidu.Aip.Ocr.Ocr ocRclient
@@ -29,12 +33,10 @@ namespace Traceless.TExtension.Tools
                 return _ocRclient;
             }
         }
-        public BaiDuAi(string APP_ID,string API_KEY,string SECRET_KEY)
+
+        public void Custom(byte[] image, string templateSign, Dictionary<string, object> options = null)
         {
-            _APP_ID = APP_ID;
-            _API_KEY = API_KEY;
-            _SECRET_KEY = SECRET_KEY;
-            
+            JObject res = _ocRclient.Custom(image, _TemplateSign_, options);
         }
     }
 }
